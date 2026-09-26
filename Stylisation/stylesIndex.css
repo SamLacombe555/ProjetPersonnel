@@ -16,13 +16,15 @@
 }
 .index:hover {
     color: green;
+    margin-bottom: 10px;
 }
 .pokedex:hover {
     color: orange;
+    margin-bottom: 10px;
 }
 .formulaire:hover {
     color: purple;
-    
+    margin-bottom: 10px;
 }
 
 /* Stylisation des balises de textes */
