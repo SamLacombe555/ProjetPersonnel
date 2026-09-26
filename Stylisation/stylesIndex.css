@@ -1,0 +1,22 @@
+
+/* Les points avant les éléments représentent les "class selector" */
+/* Stylisation de "class selector" pour l'en tête. */
+.top-bar {
+    height: 40px;
+    margin-left: 100px;
+    margin-right: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.containerTopBar {
+    width: 80%;
+    height: 100%;
+    margin: auto;
+}
+
+/* Stylisation des balises de textes */
+header{
+    background-color: aliceblue;
+    border: 2px solid whitesmoke;
+}
