@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nouveau Pokémon</title>
+</head>
+
+<body>
+    <section>
+        <h1>Créer un nouveau Pokémon</h1>
+        <form  method="post">
+            
+            <section id="cr-nom">
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom" required><br><br>
+            </section>
+
+            <section id="cr-type">
+                <label for="type">Type :</label>
+                <input type="text" id="type" name="type" required><br><br>
+            </section>
+
+            <label for="niveau">Niveau :</label>
+            <input type="number" id="niveau" name="niveau" min="1" max="100" required><br><br>
+
+            <input type="submit" value="Créer">
+        </form>
+</body>
+</html>
