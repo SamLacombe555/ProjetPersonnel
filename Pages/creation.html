@@ -1,17 +1,30 @@
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nouveau Pokémon</title>
+    <title>Formulaire Pokémon</title>
+    <!-- Ne pas oublier de faire ../ pour les fichiers qui se trouvent dans des fichiers. -->
+    <link href="../Stylisation/stylescreation.css" rel="stylesheet">
 </head>
 
 <body>
+    <!-- Le "header" et la div "ContainerTopBar" sert à ajouté une entête.-->
+    <header>
+        <div class = "containerTopBar">
+            <section class = "top-bar">
+                <div>Pokémon</div>
+                <a class ="index" href="../index.html" style="text-decoration: none">Pokedex</a>
+                <a class ="formulaire" href="Pages/creation.html" style="text-decoration: none">Entrer Pokemon</a>
+                <div>Projet Personel</div>
+            </section>
+        </div>
+    </header>
+
     <section>
         <h1>Créer un nouveau Pokémon</h1>
         <form  method="post">
-            
             <section id="cr-nom">
                 <label for="nom">Nom :</label>
                 <input type="text" id="nom" name="nom" required><br><br>
@@ -27,5 +40,6 @@
 
             <input type="submit" value="Créer">
         </form>
+
 </body>
 </html>
