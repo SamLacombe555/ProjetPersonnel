@@ -15,6 +15,9 @@
     margin: auto;
 }
 .index:hover {
+    color: green;
+}
+.pokedex:hover {
     color: orange;
 }
 .formulaire:hover {
