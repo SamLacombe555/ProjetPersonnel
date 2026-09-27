@@ -1,19 +1,32 @@
 
-/* Les points avant les éléments représentent les "class selector" */
-/* Stylisation de "class selector" pour l'en tête. */
-.top-bar {
+/* ===== Stylisation des "class selector" =====*/
+/* "class selector" pour l'en-tête. */
+.containerTopBar {
+    width: 80%;
+    height: 100%;
+    margin: auto;
+    border: 2px solid orange;
+}
+.over-top-bar {
     height: 40px;
     margin-left: 100px;
     margin-right: 100px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border: 2px solid orangered;
 }
-.containerTopBar {
-    width: 80%;
-    height: 100%;
-    margin: auto;
+.top-bar {
+    height: 60px;
+    margin-left: 100px;
+    margin-right: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid orangered;
 }
+
+/* "class selector" pour les navigations. */
 .index:hover {
     color: green;
     margin-bottom: 10px;
@@ -27,16 +40,18 @@
     margin-bottom: 10px;
 }
 
-/* Stylisation des balises de textes */
+/* ===== Stylisation des balises ===== */
 header{
-    background-color: aliceblue;
-    border: 2px solid whitesmoke;
+    top: 0;
+    position: sticky;
+    border-top: 2px solid whitesmoke;
+    border-bottom: 2px solid whitesmoke;
+    background-color: white;
 }
 a,
 a:visited,
 a:hover,
 a:active {
     color: black;
-    font-weight: bold;
     font-family: Verdana;
 }
