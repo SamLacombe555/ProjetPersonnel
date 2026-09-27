@@ -5,7 +5,7 @@
     width: 80%;
     height: 100%;
     margin: auto;
-    /*border: 2px solid orange;*/
+    /*border: 2px dashed orange;*/
 }
 .over-top-bar {
     height: 40px;
@@ -14,7 +14,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /*border: 2px solid orangered;*/
+    /*border: 2px dashed orangered;*/
 }
 .top-bar {
     height: 60px;
@@ -23,7 +23,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /*border: 2px solid orangered;*/
+    /*border: 2px dashed orangered;*/
 }
 
 /* Stylisation de "class selector" pour les navigations. */
@@ -46,7 +46,7 @@
     padding: 20px;
     margin: auto;
     background-color: white;
-    border: 2px solid blue;
+    border: 2px dashed blue;
 }
 .arrierePlanCentral {
     width: 100%;
