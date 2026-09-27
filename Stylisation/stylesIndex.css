@@ -1,11 +1,11 @@
 
-/* ===== Stylisation des "class selector" =====*/
-/* "class selector" pour l'en-tête. */
-.containerTopBar {
+/* =====+===== Stylisation des "class selector" =====+===== */
+/* ===== Stylisation de "class selector" de l'en tête ===== */
+.containerHeader {
     width: 80%;
     height: 100%;
     margin: auto;
-    border: 2px solid orange;
+    /*border: 2px solid orange;*/
 }
 .over-top-bar {
     height: 40px;
@@ -14,7 +14,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 2px solid orangered;
+    /*border: 2px solid orangered;*/
 }
 .top-bar {
     height: 60px;
@@ -23,10 +23,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 2px solid orangered;
+    /*border: 2px solid orangered;*/
 }
 
-/* "class selector" pour les navigations. */
+/* Stylisation de "class selector" pour les navigations. */
 .index:hover {
     color: green;
     margin-bottom: 10px;
@@ -40,13 +40,33 @@
     margin-bottom: 10px;
 }
 
-/* ===== Stylisation des balises ===== */
+/* ===== Stylisation de "class selector" du corps ===== */
+.containerCentral {
+    width: 70%;
+    padding: 20px;
+    margin: auto;
+    background-color: white;
+    border: 2px solid blue;
+}
+.arrierePlanCentral {
+    width: 100%;
+    height: 100%;
+    background-color: #373737;
+}
+
+/* =====+===== Stylisation des balises de corps =====+===== */
+/* Les variables "top:0;" et "position:sticky;" permettent
+au "header" de rester en haut. */
 header{
     top: 0;
     position: sticky;
     border-top: 2px solid whitesmoke;
     border-bottom: 2px solid whitesmoke;
     background-color: white;
+}
+html,body {
+    margin: 0;
+    padding: 0;
 }
 a,
 a:visited,
