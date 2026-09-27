@@ -41,6 +41,14 @@
 }
 
 /* ===== Stylisation de "class selector" du corps ===== */
+.containerImage {
+    width: 60%;
+    height: 100%;
+    margin: auto;
+    text-align: center;
+    align-content: center;
+    /*border: 2px dashed blue;*/
+}
 .containerCentral {
     width: 70%;
     padding: 20px;
