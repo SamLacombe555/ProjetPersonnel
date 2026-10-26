@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Pokémon</title>
+    <!-- Importation des style Bootstrap et CSS. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link href="./styles.css" rel="stylesheet" type="text/css">
+    <!-- Importation des style Bootstrap et CSS. -->
+</head>
+
+<body>
+    <header class="over-top-bar">
+        <div>Vann Sovannthanant & Samuel Lacombe</div>
+        <div>26/09/2026 - </div>
+    </header>
+
+    <nav class = "top-bar">
+        <a class="index" href="index.html" style="text-decoration: none">Projet Personel</a>
+        <a class="pokedex" href="pokedex.html" style="text-decoration: none">Visiter le Pokedex</a>
+        <a class="formulaire" href="creation.html" style="text-decoration: none">Entrer un Pokemon</a>
+        <div>Projet Personel</div>
+    </nav>
+    
+    <div class ="arrierePlanCentral">
+        <h1>Create a New Pokémon</h1>
+        <p>Je compte changer ça pour une liste déroulante Select.</p>
+        <form method="post">
+            <section id="cr-nom">
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom" required><br><br> <!--Div espacement -->
+            </section>
+            <section id="cr-type">
+                <ul>
+                    <li> <label> Normal<input type="checkbox" name="normal" value="normal"></label></li>
+                    <li> <label> Fire<input type="checkbox" name="fire" value="fire"></label></li>
+                    <li> <label> Water<input type="checkbox" name="water" value="water"></label></li>
+                    <li> <label> Electric<input type="checkbox" name="electric" value="electric"></label></li>
+                    <li> <label> Grass<input type="checkbox" name="grass" value="grass"></label></li>
+                    <li> <label> Ice<input type="checkbox" name="ice" value="ice"></label></li>
+                    <li> <label> Fighting<input type="checkbox" name="fighting" value="fighting"></label></li>
+                    <li> <label> Poison<input type="checkbox" name="poison" value="poison"></label></li>
+                    <li> <label> Ground<input type="checkbox" name="ground" value="ground"></label></li>
+                    <li> <label> Flying<input type="checkbox" name="flying" value="flying"></label></li>
+                    <li> <label> Psychic<input type="checkbox" name="psychic" value="psychic"></label></li>
+                    <li> <label> Bug<input type="checkbox" name="bug" value="bug"></label></li>
+                    <li> <label> Rock<input type="checkbox" name="rock" value="rock"></label></li>
+                    <li> <label> Ghost<input type="checkbox" name="ghost" value="ghost"></label></li>
+                    <li> <label> Dragon<input type="checkbox" name="dragon" value="dragon"></label></li>
+                    <li> <label> Dark<input type="checkbox" name="dark" value="dark"></label></li>
+                    <li> <label> Steel<input type="checkbox" name="steel" value="steel"></label></li>
+                    <li> <label> Fairy<input type="checkbox" name="fairy" value="fairy"></label></li>
+                </ul>
+            </section>
+            <label for="niveau">Niveau :</label>
+            <input type="number" id="niveau" name="niveau" min="1" max="100" required><br><br>
+            <input type="submit" value="Créer">
+        </form>
+    </div>
+
+    
+</body>
+</html>
