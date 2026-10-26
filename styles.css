@@ -3,13 +3,12 @@
 /* ===== Stylisation de "class selector" de l'en tête ===== */
 .over-top-bar {
     height: 50px;
-    padding-left: 20%;
-    padding-right: 20%;
+    padding-left: 10%;
+    padding-right: 10%;
     display: flex;
     align-items: center;
     
     color: white;
-    font-family: Verdana;
     background-color: #363636;
     border-bottom: 5px solid #333333;
     justify-content: space-between;
@@ -17,8 +16,8 @@
 }
 .top-bar {
     height: 60px;
-    padding-left: 20%;
-    padding-right: 20%;
+    padding-left: 10%;
+    padding-right: 10%;
     display: flex;
     align-items: center;
 
@@ -26,7 +25,6 @@
     top: 0;
 
     color: white;
-    font-family: Verdana;
     background-color: #363636;
     border-bottom: 5px solid #232023;
     justify-content: space-between;
@@ -71,6 +69,7 @@
 /* =====+===== Stylisation des balises de corps =====+===== */
 body {
     color: white;
+    font-family: Verdana;
     background:
         linear-gradient(135deg, #363636 21px, #363636 22px, #363636 24px, transparent 24px, transparent 67px, #363636 67px, #363636 69px, transparent 69px),
         linear-gradient(225deg, #363636 21px, #363636 22px, #363636 24px, transparent 24px, transparent 67px, #363636 67px, #363636 69px, transparent 69px)0 64px;
