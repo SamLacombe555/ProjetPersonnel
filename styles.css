@@ -1,6 +1,5 @@
 
-/* =====+===== Stylisation des "class selector" =====+===== */
-/* ===== Stylisation de "class selector" de l'en tête ===== */
+/* Stylisation du header. */
 .over-top-bar {
     height: 50px;
     padding-left: 10%;
@@ -32,21 +31,15 @@
     /*border: 2px dashed orangered;*/
 }
 
-/* Stylisation de "class selector" pour les navigations. */
-.index:hover {
-    color: green;
-    margin-bottom: 10px;
+/* Stylisation pour les navigations. */
+.index:hover {color: green; margin-bottom: 10px;
 }
-.pokedex:hover {
-    color: orange;
-    margin-bottom: 10px;
+.pokedex:hover {color: orange; margin-bottom: 10px;
 }
-.formulaire:hover {
-    color: purple;
-    margin-bottom: 10px;
+.formulaire:hover {color: purple; margin-bottom: 10px;
 }
 
-/* ===== Stylisation de "class selector" du corps ===== */
+/* Stylisation de l'arrière-plan. */
 .arrierePlanCentral {
     width: 80%;
     padding: 20px;
@@ -55,6 +48,8 @@
     border: 5px solid #333333;
     /*border: 2px dashed blue;*/
 }
+
+/* Stylisation de la grille et des cartes. */
 .grid3 {
     display: grid;
     grid-template-columns: auto auto auto;
@@ -66,21 +61,14 @@
     border: 2px solid white;
 }
 
-/* =====+===== Stylisation des balises de corps =====+===== */
+/* Stylisation des balises de corps. */
 body {
     color: white;
     font-family: Verdana;
-    background:
-        linear-gradient(135deg, #363636 21px, #363636 22px, #363636 24px, transparent 24px, transparent 67px, #363636 67px, #363636 69px, transparent 69px),
-        linear-gradient(225deg, #363636 21px, #363636 22px, #363636 24px, transparent 24px, transparent 67px, #363636 67px, #363636 69px, transparent 69px)0 64px;
-        background-color:#232023;
-        background-size: 64px 128px;
+    background-color:#232023;
     /*background-color: #232023;*/
 }
-a,
-a:visited,
-a:hover,
-a:active {
+a, a:visited, a:hover, a:active {
     color: white;
     font-family: Verdana;
 }
