@@ -9,7 +9,7 @@ boutonAjoutCarte.addEventListener("click", creationPokemon)
 function creationPokemon() {
     // Constantes des informations du DOM.
     
-    // Constante de création d'élément<
+    // Constante de création d'élément.
     const carte = document.createElement('div');
     const nom = document.createElement('h3');
     const btnSupprimer = document.createElement('button');
