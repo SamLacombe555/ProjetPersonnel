@@ -5,12 +5,13 @@
     padding-left: 10%;
     padding-right: 10%;
     display: flex;
+
     align-items: center;
+    justify-content: space-between;
     
     color: white;
     background-color: #363636;
     border-bottom: 5px solid #333333;
-    justify-content: space-between;
     /*border: 2px dashed orangered;*/
 }
 .top-bar {
@@ -18,26 +19,23 @@
     padding-left: 10%;
     padding-right: 10%;
     display: flex;
-    align-items: center;
 
+    align-items: center;
+    justify-content: space-between;
     position: sticky;
     top: 0;
-
+    
     color: white;
     background-color: #363636;
     border-bottom: 5px solid #232023;
-    justify-content: space-between;
     border-radius: 0px 0px 20px 20px;
     /*border: 2px dashed orangered;*/
 }
 
 /* Stylisation pour les navigations. */
-.index:hover {color: green; margin-bottom: 10px;
-}
-.pokedex:hover {color: orange; margin-bottom: 10px;
-}
-.formulaire:hover {color: purple; margin-bottom: 10px;
-}
+.index:hover {color: green; margin-bottom: 10px; }
+.pokedex:hover {color: orange; margin-bottom: 10px; }
+.formulaire:hover {color: purple; margin-bottom: 10px; }
 
 /* Stylisation de l'arrière-plan. */
 .arrierePlanCentral {
