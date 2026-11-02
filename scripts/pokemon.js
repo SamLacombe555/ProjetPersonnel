@@ -1,19 +1,21 @@
 
 export class Pokemon {
     // Déclaration de variables.
-    #id = int
+    #id = 1
     #nom = "nomPlaceHolder"
     #type = "TypePlaceHolder"
-    #hp = 0
-    #attaque = 0
-    #defence = 0
-    #vitesse = 0
+    #niveau = 1
+    #hp = 100
+    #attaque = 10
+    #defence = 15
+    #vitesse = 10
 
     // Déclaration du constructeur.
-    constructor(id, nom, type, hp, attaque, defence, vitesse){
+    constructor(id, nom, type, niveau, hp, attaque, defence, vitesse){
         this.#id = id
         this.#nom = nom
         this.#type = type
+        this.#niveau = niveau
         this.#hp = hp
         this.#attaque = attaque
         this.#defence = defence
@@ -21,6 +23,7 @@ export class Pokemon {
     }
 
     // Déclarration des getters et setters.
+    // 'get' offre la permission de lire et 'set' donne la permission d'écrire.
     get id() {return this.#id}
     set id(id) {this.#id = id}
 
@@ -41,6 +44,11 @@ export class Pokemon {
                 "Acier, Feerique.")}
         this.#nom = nom }
 
+    get niveau() {return this.#niveau}
+    set niveau(niveau) {
+        if (niveau != int) {throw TypeError("Le niveau doit être de type int.")}
+        this.#niveau = niveau }
+
     get hp() {return this.#hp}
     set hp(hp) {
         if (hp != int) {throw TypeError("L'hp doit être de type int.")}
@@ -58,7 +66,7 @@ export class Pokemon {
 
     get vitesse() {return this.#vitesse}
     set vitesse(vitesse) {
-        if (vitesse != int) {throw TypeError("La défence doit être de type int.")}
+        if (vitesse != int) {throw TypeError("La vitesse doit être de type int.")}
         this.#vitesse = vitesse }
 
 }
