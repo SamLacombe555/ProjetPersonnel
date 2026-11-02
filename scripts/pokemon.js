@@ -3,7 +3,7 @@ export class Pokemon {
     // Déclaration de variables.
     #id = 1
     #nom = "nomPlaceHolder"
-    #type = "TypePlaceHolder"
+    #type = ["TypePlaceHolder"]
     #niveau = 1
     #hp = 100
     #attaque = 10

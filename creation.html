@@ -32,47 +32,45 @@
                 <h1>Créer un nouveau Pokémon</h1>
                 <p>Les Pokémons créer ici seront envoyés dans le programme principale et seront affichés
                     dane le Pokédex.</p>
-                <section id="creationPokemeon">
-                    <form method="post">
-                        <div class="row">
-                            <div class="col-6 p-4 border border-success">    
-                                <div class="mb-3">
-                                    <label class="form-label" for="nom">Nom :</label>
-                                    <input class="form-control" id="nom" type="text" name="nom" required>
-                                </div>
-                                
-                                <label class="form-label" for="niveau">Choisissez un niveau (Min 1 et max 100):</label>
-                                <input class="form-control" style="width: 25%;" type="number" id="niveau" min="1" max="100" value="1" required>
-
-                                <label class="form-label" for="pointVie">Quantifiez le point de vie (Min 1 et max 700):</label>
-                                <input class="form-control" style="width: 25%;" type="number" id="pointVie" min="1" max="700" value="100" required>
-
-                                <label class="form-label" for="attaque">Quantifiez l'attaque (Min 1 et max 200):</label>
-                                <input class="form-control" style="width: 25%;" type="number" id="attaque" min="1" max="200" value="10" required>
-
-                                <label class="form-label" for="defence">Quantifiez la défence (Min 1 et max 250):</label>
-                                <input class="form-control" style="width: 25%;" type="number" id="defence" min="1" max="250" value="15" required>
-
-                                <label class="form-label" for="vitesse">Quantifiez la vitesse (Min 1 et max 200):</label>
-                                <input class="form-control" style="width: 25%;" type="number" id="vitesse" min="1" max="200" value="10" required>
+                <form id="formulairePokemon">         
+                    <div class="row">
+                        <div class="col-6 p-4 border border-success">    
+                            <div class="mb-3">
+                                <label class="form-label" for="nom">Nom :</label>
+                                <input class="form-control" id="nom" type="text" name="nom" required>
                             </div>
+                            
+                            <label class="form-label" for="niveau">Choisissez un niveau (Min 1 et max 100):</label>
+                            <input class="form-control" style="width: 25%;" type="number" id="niveau" min="1" max="100" value="1" required>
 
-                            <div class="col-6 p-4 border border-warning" id="containerType">
-                                <!-- On peut ajouter jusqu'a trois types. -->
-                                <div class="mb-3">
-                                    <label class="form-label" for="selectType1">Choisissez un type:</label>
-                                    <select class="form-select" id="selectType1" name="selectTypeChoisi1">
-                                        <!-- On insère les types depuis JavaScript. -->
-                                    </select>
-                                </div>
+                            <label class="form-label" for="pointVie">Quantifiez le point de vie (Min 1 et max 700):</label>
+                            <input class="form-control" style="width: 25%;" type="number" id="pointVie" min="1" max="700" value="100" required>
 
-                                <button class="btn btn-warning" type="button" id="AjouterType">Ajouter un autre type</button> 
-                            </div>
+                            <label class="form-label" for="attaque">Quantifiez l'attaque (Min 1 et max 200):</label>
+                            <input class="form-control" style="width: 25%;" type="number" id="attaque" min="1" max="200" value="10" required>
+
+                            <label class="form-label" for="defence">Quantifiez la défence (Min 1 et max 250):</label>
+                            <input class="form-control" style="width: 25%;" type="number" id="defence" min="1" max="250" value="15" required>
+
+                            <label class="form-label" for="vitesse">Quantifiez la vitesse (Min 1 et max 200):</label>
+                            <input class="form-control" style="width: 25%;" type="number" id="vitesse" min="1" max="200" value="10" required>
                         </div>
 
-                        <button class="btn btn-warning" type="submit" id="Validation">Créer</button>
-                    </form>
-                </section>
+                        <div class="col-6 p-4 border border-warning" id="containerType">
+                            <!-- On peut ajouter jusqu'a trois types. -->
+                            <div class="mb-3">
+                                <label class="form-label" for="selectType1">Choisissez un type:</label>
+                                <select class="form-select" id="selectType1" name="selectTypeChoisi1">
+                                    <!-- On insère les types depuis JavaScript. -->
+                                </select>
+                            </div>
+
+                            <button class="btn btn-warning" type="button" id="AjouterType">Ajouter un autre type</button> 
+                        </div>
+                    </div>
+
+                    <button class="btn btn-warning" type="submit" id="Validation">Créer</button>
+                </form>
             </div>
                 
             <div class="col-4 border border-secondary">

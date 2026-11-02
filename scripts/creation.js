@@ -28,7 +28,7 @@ function AjouterListeDeroulanteType() {
 
         blocListeDeroulante.className = 'mb-3';
         labelListeDeroulante.classList = 'form-label';
-        labelListeDeroulante.for = `selectType${compteType}`;
+        labelListeDeroulante.htmlFor = `selectType${compteType}`;
         labelListeDeroulante.textContent = 'Choisissez un type: ';
         listeDeroulante.classList = 'form-select';
         listeDeroulante.id = `selectType${compteType}`;
@@ -47,10 +47,10 @@ boutonAjoutType.addEventListener("click", AjouterListeDeroulanteType);
 PreparerListeDeroulanteType(listeSelectType);
 
 // +=====+ Création d'un nouveau Pokemon à partir du formulaire. +=====+
-const boutonValidation = document.getElementById("Validation");
+const formulaire = document.getElementById("formulairePokemon");
 
-function creationPokemon() {
-    event.preventDefault()
+function creationPokemon(event) {
+    event.preventDefault();
 
     const nom = document.getElementById("nom").value;
     const niveau = document.getElementById("niveau").value;
@@ -59,8 +59,14 @@ function creationPokemon() {
     const defence = document.getElementById("defence").value;
     const vitesse = document.getElementById("vitesse").value;
 
+    console.log(nom);
+    console.log(niveau);
+    console.log(pointVie);
+    console.log(attaque);
+    console.log(defence);
+    console.log(vitesse);
     const pokemon = new Pokemon(compteType, nom, "typePlaceHolder", niveau, pointVie, attaque, defence, vitesse);
     console.log(pokemon);
 }
 
-boutonValidation.addEventListener("click", creationPokemon)
+formulaire.addEventListener("submit", creationPokemon)
