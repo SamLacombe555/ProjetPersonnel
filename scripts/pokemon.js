@@ -37,12 +37,14 @@ export class Pokemon {
         const typeValide = ["Normal","Feu","Eau","Electrique","Herbe","Glace",
             "Combattant","Poison","Sol","Volant","Psychique","Insect","Roche",
             "Fantome","Dragon","Sombre","Acier","Feerique"]
-        if (!(typeValide.includes(type))) {
+        for (typeRegarder of type) {
+            if (!(typeValide.includes(type))) {
             throw TypeError("Le type doit être de type valide, donc soit:",
                 "Normal, Feu, Eau, Electrique, Herbe, Glace, Combattant, Poison,",
                 "Sol, Volant, Psychique, Insect, Roche, Fantome, Dragon, Sombre,",
-                "Acier, Feerique.")}
-        this.#nom = nom }
+                "Acier, Feerique.") }
+            this.#type = type } }
+        
 
     get niveau() {return this.#niveau}
     set niveau(niveau) {
@@ -69,4 +71,17 @@ export class Pokemon {
         if (vitesse != int) {throw TypeError("La vitesse doit être de type int.")}
         this.#vitesse = vitesse }
 
+    // Déclarration des getters et setters.
+    toJSON() {
+        return {
+        id      : this.#id,
+        nom     : this.#nom,
+        type    : this.#type,
+        niveau  : this.#niveau,
+        hp      : this.#hp,
+        attaque : this.#attaque,
+        defence : this.#defence,
+        vitesse : this.#vitesse
+        }
+    }
 }

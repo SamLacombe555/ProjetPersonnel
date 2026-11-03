@@ -2,7 +2,6 @@ import { Pokemon } from "./pokemon.js";
 
 // Déclarations des élèments du DOM.
 let compteType = 1;
-
 // +=====+ Déclarations des élèments pour les listes de types. +=====+
 const listeSelectType = document.querySelector('#selectType1');
 const boutonAjoutType = document.querySelector('#AjouterType');
@@ -21,7 +20,8 @@ function PreparerListeDeroulanteType(listeDeroulante) {
 
 function AjouterListeDeroulanteType() {
     // Ajoute un 'select' élement dans le 'containerType'.
-    if (compteType < 3) { compteType += 1;
+    if (compteType < 3) {
+        compteType += 1;
         const blocListeDeroulante = document.createElement('div');
         const labelListeDeroulante = document.createElement('label');
         const listeDeroulante = document.createElement('select');
@@ -46,10 +46,17 @@ function AjouterListeDeroulanteType() {
 boutonAjoutType.addEventListener("click", AjouterListeDeroulanteType);
 PreparerListeDeroulanteType(listeSelectType);
 
+
 // +=====+ Création d'un nouveau Pokemon à partir du formulaire. +=====+
+// Explication: compteur reçoit "compteurPokemon". S'il est false, parce qu'il ne contient
+//      pas un chiffre parce qu'on a accèder au fichier pour la première fois, le compteur
+//      commence à 0.
+let compteurPokemon = parseInt(sessionStorage.getItem("CompteurPokemon"), 10) || 0;
+
 const formulaire = document.getElementById("formulairePokemon");
 
 function creationPokemon(event) {
+    compteurPokemon += 1;
     event.preventDefault();
 
     const nom = document.getElementById("nom").value;
@@ -58,15 +65,13 @@ function creationPokemon(event) {
     const attaque = document.getElementById("attaque").value;
     const defence = document.getElementById("defence").value;
     const vitesse = document.getElementById("vitesse").value;
+    const pokemon = new Pokemon(compteurPokemon, nom, "typePlaceHolder",
+        niveau, pointVie, attaque, defence, vitesse);
 
-    console.log(nom);
-    console.log(niveau);
-    console.log(pointVie);
-    console.log(attaque);
-    console.log(defence);
-    console.log(vitesse);
-    const pokemon = new Pokemon(compteType, nom, "typePlaceHolder", niveau, pointVie, attaque, defence, vitesse);
+    sessionStorage.setItem("CompteurPokemon", compteurPokemon);
+    sessionStorage.setItem(`Pokemon${compteurPokemon}`, JSON.stringify(pokemon));
     console.log(pokemon);
+    
 }
 
 formulaire.addEventListener("submit", creationPokemon)
