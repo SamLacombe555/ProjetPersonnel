@@ -56,4 +56,12 @@ function ouvrirModalSuppression(carte) {
     sessionStorage.clear();
 }
 
+function rechercherPokemon(motCherche, listPokemons) {
+    // Fonction pour la barre de recherche qui ferrait apparaître les Pokemons qui y correspondent
+    const regex = new RegExp(motCherche, "gi");
+
+    return listPokemons.filter(listPokemons => regex.test(listPokemons.nom));
+
+}
+
 chargerPokemon();

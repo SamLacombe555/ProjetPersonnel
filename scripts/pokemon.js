@@ -1,5 +1,9 @@
 
 export class Pokemon {
+
+    // Liste de tous les Pokemons créés.
+    static listePokemons= [];
+
     // Déclaration de variables.
     #id = 1
     #nom = "nomPlaceHolder"
@@ -20,6 +24,9 @@ export class Pokemon {
         this.#attaque = attaque
         this.#defence = defence
         this.#vitesse = vitesse
+
+        // Ajoute automatique le Pokemon à la liste.
+        Pokemon.listePokemons.push(this);
     }
 
     // Déclarration des getters et setters.
