@@ -1,15 +1,16 @@
+
 import { Pokemon } from "./pokemon.js";
 
-// Déclarations des élèments du DOM.
-let compteType = 1;
 // +=====+ Déclarations des élèments pour les listes de types. +=====+
+// Déclarations des éléments du DOM.
+let compteType = 1;
 const listeSelectType = document.querySelector('#selectType1');
 const boutonAjoutType = document.querySelector('#AjouterType');
 const typeValide = ["Normal","Feu","Eau","Electrique","Herbe","Glace",
             "Combattant","Poison","Sol","Volant","Psychique","Insect",
             "Roche","Fantome","Dragon","Sombre","Acier","Feerique"];
 
-// Déclatation de fonctions.
+// Déclaration des fonctions.
 function PreparerListeDeroulanteType(listeDeroulante) {
     // Remplis une 'select' élement avec 'typeValide'.
     for (let i=0; i<typeValide.length; i++) {
@@ -56,22 +57,63 @@ let compteurPokemon = parseInt(sessionStorage.getItem("CompteurPokemon"), 10) ||
 const formulaire = document.getElementById("formulairePokemon");
 
 function creationPokemon(event) {
+    // Créer un pokemon avec les réponses du formulaire et l'envoie dans 'sessionstorage'.
     compteurPokemon += 1;
     event.preventDefault();
-
+    
     const nom = document.getElementById("nom").value;
     const niveau = document.getElementById("niveau").value;
+    const type = [];
+    // Boucle circule dans les boites de type afin de les mettre dans l'array 'type'.
+    for (let i=1; i<=compteType; i++) {
+        const typeChoisi = document.querySelector(`#selectType${i}`).value;
+        type.push(typeChoisi);
+    }
     const pointVie = document.getElementById("pointVie").value;
     const attaque = document.getElementById("attaque").value;
     const defence = document.getElementById("defence").value;
     const vitesse = document.getElementById("vitesse").value;
-    const pokemon = new Pokemon(compteurPokemon, nom, "typePlaceHolder",
+    const pokemon = new Pokemon(compteurPokemon, nom, type,
         niveau, pointVie, attaque, defence, vitesse);
 
     sessionStorage.setItem("CompteurPokemon", compteurPokemon);
     sessionStorage.setItem(`Pokemon${compteurPokemon}`, JSON.stringify(pokemon));
     console.log(pokemon);
-    
 }
 
 formulaire.addEventListener("submit", creationPokemon)
+
+// +=====+ Section pour la partie: Aperçu de la carte. +=====+
+function mettreAjourApercu () {
+    // Met à jour l'apercu de la carte après chaque 'input' des informations.
+    document.getElementById("nomApercu").textContent =
+    document.getElementById("nom").value || "nomApercu";
+
+    document.getElementById("niveauApercu").textContent = "Niveau : " +
+    document.getElementById("niveau").value || 0;
+
+    document.getElementById("pointVieApercu").textContent = "Point de vie : " +
+    document.getElementById("pointVie").value || 0;
+
+    document.getElementById("attaqueApercu").textContent = "Attaque : " +
+    document.getElementById("attaque").value || 0;
+
+    document.getElementById("defenceApercu").textContent = "Défence : " +
+    document.getElementById("defence").value || 0;
+
+    document.getElementById("vitesseApercu").textContent = "Vitesse : " +
+    document.getElementById("vitesse").value || 0;
+
+    // Met à jour l'aperçu pour la liste de type.
+    const listeType = document.querySelector("card ol");
+    listeType.innerHTML = "";   // Vide les listes de l'aperçu.
+    const containerType = document.querySelectorAll("#containerType select")
+    containerType.forEach(select => {
+        const liste = document.createElement("li");
+        liste.textContent = select.value;
+        listeType.append(liste); }
+    )
+}
+
+formulaire.addEventListener("input", mettreAjourApercu);
+mettreAjourApercu();
