@@ -53,7 +53,6 @@ PreparerListeDeroulanteType(listeSelectType);
 //      pas un chiffre parce qu'on a accèder au fichier pour la première fois, le compteur
 //      commence à 0.
 let compteurPokemon = parseInt(sessionStorage.getItem("CompteurPokemon"), 10) || 0;
-
 const formulaire = document.getElementById("formulairePokemon");
 
 function creationPokemon(event) {
@@ -67,18 +66,18 @@ function creationPokemon(event) {
     // Boucle circule dans les boites de type afin de les mettre dans l'array 'type'.
     for (let i=1; i<=compteType; i++) {
         const typeChoisi = document.querySelector(`#selectType${i}`).value;
-        type.push(typeChoisi);
-    }
+        type.push(typeChoisi); }
     const pointVie = document.getElementById("pointVie").value;
     const attaque = document.getElementById("attaque").value;
     const defence = document.getElementById("defence").value;
     const vitesse = document.getElementById("vitesse").value;
     const pokemon = new Pokemon(compteurPokemon, nom, type,
         niveau, pointVie, attaque, defence, vitesse);
-
+    
     sessionStorage.setItem("CompteurPokemon", compteurPokemon);
     sessionStorage.setItem(`Pokemon${compteurPokemon}`, JSON.stringify(pokemon));
     console.log(pokemon);
+    formulaire.reset();
 }
 
 formulaire.addEventListener("submit", creationPokemon)
