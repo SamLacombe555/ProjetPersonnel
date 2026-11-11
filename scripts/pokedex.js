@@ -1,8 +1,7 @@
 
-// import {Pokemon} from "./pokemon";
-
 // Déclaration des éléments du DOM.
 const champPokemon = document.getElementById("ChampPokemon");
+
 
 async function chargerPokemonAPI() {
     const reponse = await fetch("https://6af2194542c6561ced390228.mockapi.io/Pokemon")
@@ -36,22 +35,6 @@ async function chargerPokemonAPI() {
     }  
 }
 
-getData("https://6af2194542c6561ced390228.mockapi.io/Pokemon")
-async function getData(url) {
-    // L'enveloppe des données.
-    const reponse = await fetch(url)
-    // Renvoie erreur.
-    if (!reponse.ok) {
-        throw new Error(`Erreur: ${reponse.status}`);
-    }
-    // Le contenu
-    const resultat = await reponse.json();
-    for (let i=0; i<resultat.length; i++)
-    {
-        console.log(resultat[i].nom);
-    } 
-}
-
 function ouvrirModalSuppression(carte) {
     carte.remove();
     sessionStorage.clear();
@@ -60,9 +43,8 @@ function ouvrirModalSuppression(carte) {
 function rechercherPokemon(motCherche, listPokemons) {
     // Fonction pour la barre de recherche qui ferrait apparaître les Pokemons qui y correspondent
     const regex = new RegExp(motCherche, "i");
-
+    console.log("A")
     return listPokemons.filter(i => regex.test(i.nom));
-
 }
 
 async function chargerPokemonRecherche(motCherche) {
@@ -97,5 +79,10 @@ async function chargerPokemonRecherche(motCherche) {
         champPokemon.append(carte);
     }
 }
-//chargerPokemonAPI();
-chargerPokemonRecherche("c")
+
+// CETTE PARTIE NE FONCTIONNE PAS.
+const formulaireRecherche = document.getElementById("formulaireRecherche");
+const champRecherche = document.getElementById("recherche").value;
+
+formulaireRecherche.addEventListener("input", chargerPokemonRecherche(champRecherche))
+//chargerPokemonRecherche("")
