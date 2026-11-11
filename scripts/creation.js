@@ -61,7 +61,6 @@ function creationPokemon(event) {
     event.preventDefault();
     
     const nom = document.getElementById("nom").value;
-    const niveau = document.getElementById("niveau").value;
     const type = [];
     // Boucle circule dans les boites de type afin de les mettre dans l'array 'type'.
     for (let i=1; i<=compteType; i++) {
@@ -71,14 +70,30 @@ function creationPokemon(event) {
     const attaque = document.getElementById("attaque").value;
     const defence = document.getElementById("defence").value;
     const vitesse = document.getElementById("vitesse").value;
-    const pokemon = new Pokemon(compteurPokemon, nom, type,
-        niveau, pointVie, attaque, defence, vitesse);
+    const pokemon = new Pokemon(compteurPokemon, nom, type, pointVie, attaque, defence, vitesse);
     
     sessionStorage.setItem("CompteurPokemon", compteurPokemon);
     sessionStorage.setItem(`Pokemon${compteurPokemon}`, JSON.stringify(pokemon));
-    console.log(pokemon);
-    formulaire.reset();
+
+    
 }
+
+getData("https://6af2194542c6561ced390228.mockapi.io/testing")
+    async function getData(url) {
+        // L'enveloppe des données.
+        const reponse = await fetch(url)
+        // Renvoie erreur.
+        if (!reponse.ok) {
+            throw new Error(`Erreur: ${reponse.status}`);
+        }
+        // Le contenu
+        const resultat = await reponse.json();
+        for (let i=0; i<resultat.length; i++)
+        {
+            console.log(resultat[i].nom);
+        }
+        
+    }
 
 formulaire.addEventListener("submit", creationPokemon)
 
@@ -87,9 +102,6 @@ function mettreAjourApercu () {
     // Met à jour l'apercu de la carte après chaque 'input' des informations.
     document.getElementById("nomApercu").textContent =
     document.getElementById("nom").value || "nomApercu";
-
-    document.getElementById("niveauApercu").textContent = "Niveau : " +
-    document.getElementById("niveau").value || 0;
 
     document.getElementById("pointVieApercu").textContent = "Point de vie : " +
     document.getElementById("pointVie").value || 0;

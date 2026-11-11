@@ -8,7 +8,6 @@ export class Pokemon {
     #id = 1
     #nom = "nomPlaceHolder"
     #type = ["TypePlaceHolder"]
-    #niveau = 1
     #hp = 100
     #attaque = 10
     #defence = 15
@@ -19,7 +18,6 @@ export class Pokemon {
         this.#id = id
         this.#nom = nom
         this.#type = type
-        this.#niveau = niveau
         this.#hp = hp
         this.#attaque = attaque
         this.#defence = defence
@@ -41,22 +39,16 @@ export class Pokemon {
 
     get type() {return this.#type}
     set type(type) {
-        const typeValide = ["Normal","Feu","Eau","Electrique","Herbe","Glace",
-            "Combattant","Poison","Sol","Volant","Psychique","Insect","Roche",
-            "Fantome","Dragon","Sombre","Acier","Feerique"]
+        const typeValide = ["Normal","Feu","Eau","Electrik","Plante","Glace",
+            "Combat","Poison","Sol","Vol","Psy","Insecte","Roche","Spectre",
+            "Dragon","Tenebres","Acier","Fee"]
         for (typeRegarder of type) {
             if (!(typeValide.includes(type))) {
             throw TypeError("Le type doit être de type valide, donc soit:",
-                "Normal, Feu, Eau, Electrique, Herbe, Glace, Combattant, Poison,",
-                "Sol, Volant, Psychique, Insect, Roche, Fantome, Dragon, Sombre,",
-                "Acier, Feerique.") }
+                "Normal, Feu, Eau, Electrik, Plante, Glace, Combat, Poison,",
+                "Sol, Vol, Psy, Insecte, Roche, Spectre, Dragon, Tenebres,",
+                "Acier, Fee.") }
             this.#type = type } }
-        
-
-    get niveau() {return this.#niveau}
-    set niveau(niveau) {
-        if (niveau != int) {throw TypeError("Le niveau doit être de type int.")}
-        this.#niveau = niveau }
 
     get hp() {return this.#hp}
     set hp(hp) {
@@ -84,7 +76,6 @@ export class Pokemon {
         id      : this.#id,
         nom     : this.#nom,
         type    : this.#type,
-        niveau  : this.#niveau,
         hp      : this.#hp,
         attaque : this.#attaque,
         defence : this.#defence,
