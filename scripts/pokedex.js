@@ -4,37 +4,52 @@
 // Déclaration des éléments du DOM.
 const champPokemon = document.getElementById("ChampPokemon");
 
-function chargerPokemon() {
-    // Au lancement de la page, charge les pokemons.
-    for (let i=0; i<sessionStorage.length; i++) {
-        const cle = sessionStorage.key(i);
-        if (cle.startsWith("Pokemon")) {
-            const pokemon = JSON.parse(sessionStorage.getItem(cle))
-            console.log(pokemon);
+async function chargerPokemonAPI() {
+    const reponse = await fetch("https://6af2194542c6561ced390228.mockapi.io/Pokemon")
+    if (!reponse.ok) {
+        throw new Error(`Erreur: ${reponse.status}`);
+    } 
+    const resultat = await reponse.json();
+    for (let i=0; i<resultat.length; i++)
+    {
+        const carte = document.createElement('div');
+        const nom = document.createElement('h3');
+        const type = document.createElement('p');
+        const btnInspecter = document.createElement('button');
+        const btnSupprimer = document.createElement('button');
+        carte.classList = 'card p-3';
+        nom.textContent = `${resultat[i].nom}`;
+        for (let ii=0; ii<resultat[i].type.length; ii++) {type.textContent += `| ${resultat[i].type[ii]} `; }
+        btnInspecter.type = 'button';
+        btnInspecter.classList = 'btn btn-info';
+        btnInspecter.textContent = 'Inspecter';
 
-            const carte = document.createElement('div');
-            const nom = document.createElement('h3');
-            const type = document.createElement('p');
-            const btnInspecter = document.createElement('button');
-            const btnSupprimer = document.createElement('button');
-            carte.classList = 'card p-3';
-            nom.textContent = `${pokemon.nom}`;
-            for (let i=0; i<pokemon.type.length; i++) {type.textContent += `| ${pokemon.type[i]} `; }
-            btnInspecter.type = 'button';
-            btnInspecter.classList = 'btn btn-info';
-            btnInspecter.textContent = 'Inspecter';
+        btnSupprimer.type = 'button';
+        btnSupprimer.classList = 'btn btn-warning';
+        btnSupprimer.textContent = 'Enlever carte';
+        btnSupprimer.addEventListener("click", () => {
+            ouvrirModalSuppression(carte)
+        })
 
-            btnSupprimer.type = 'button';
-            btnSupprimer.classList = 'btn btn-warning';
-            btnSupprimer.textContent = 'Enlever carte';
-            btnSupprimer.addEventListener("click", () => {
-                ouvrirModalSuppression(carte)
-            })
+        carte.append(nom, type, btnInspecter, btnSupprimer);
+        champPokemon.append(carte);
+    }  
+}
 
-            carte.append(nom, type, btnInspecter, btnSupprimer);
-            champPokemon.append(carte);
-        }      
+getData("https://6af2194542c6561ced390228.mockapi.io/Pokemon")
+async function getData(url) {
+    // L'enveloppe des données.
+    const reponse = await fetch(url)
+    // Renvoie erreur.
+    if (!reponse.ok) {
+        throw new Error(`Erreur: ${reponse.status}`);
     }
+    // Le contenu
+    const resultat = await reponse.json();
+    for (let i=0; i<resultat.length; i++)
+    {
+        console.log(resultat[i].nom);
+    } 
 }
 
 function ouvrirModalSuppression(carte) {
@@ -50,4 +65,4 @@ function rechercherPokemon(motCherche, listPokemons) {
 
 }
 
-chargerPokemon();
+chargerPokemonAPI();

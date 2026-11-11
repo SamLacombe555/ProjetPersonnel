@@ -74,26 +74,7 @@ function creationPokemon(event) {
     
     sessionStorage.setItem("CompteurPokemon", compteurPokemon);
     sessionStorage.setItem(`Pokemon${compteurPokemon}`, JSON.stringify(pokemon));
-
-    
 }
-
-getData("https://6af2194542c6561ced390228.mockapi.io/testing")
-    async function getData(url) {
-        // L'enveloppe des données.
-        const reponse = await fetch(url)
-        // Renvoie erreur.
-        if (!reponse.ok) {
-            throw new Error(`Erreur: ${reponse.status}`);
-        }
-        // Le contenu
-        const resultat = await reponse.json();
-        for (let i=0; i<resultat.length; i++)
-        {
-            console.log(resultat[i].nom);
-        }
-        
-    }
 
 formulaire.addEventListener("submit", creationPokemon)
 
