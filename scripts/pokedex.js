@@ -1,13 +1,13 @@
+import { Pokemon } from "./pokemon";
 
-// Déclaration des éléments du DOM.
+// +=====+ Section de Chargement des Pokemons. +=====+
+let tousLesPokemons = [];
 const champPokemon = document.getElementById("ChampPokemon");
 const formulaireRecherche = document.getElementById("formulaireRecherche");
 const champRecherche = document.getElementById("recherche");
-// Contient les données charger de API.
-let tousLesPokemons = [];
 
 async function chargerPokemonAPI() {
-    // Va chercher les données de mockapi et met dans 'tousLesPokemons'.
+    // Va chercher les données de mockapi et les met dans 'tousLesPokemons'.
     const reponse = await fetch("https://6af2194542c6561ced390228.mockapi.io/Pokemon")
     if (!reponse.ok) {throw new Error(`Erreur: ${reponse.status}`); } 
     tousLesPokemons = await reponse.json();
@@ -30,10 +30,11 @@ function creerCarte(pokemon) {
     // 't' est l'index de l'array 'pokemon.type'.
     type.textContent = pokemon.type.map(t => `| ${t} `).join('');
 
+    // Todo: Faire en sorte que quand on clique 'Inspecter', que le
+    //      programme comprend que le sélectionne.
     btnInspecter.type = 'button';
     btnInspecter.classList = 'btn btn-info';
     btnInspecter.textContent = 'Inspecter';
-
     btnSupprimer.type = 'button';
     btnSupprimer.classList = 'btn btn-warning';
     btnSupprimer.textContent = 'Enlever carte';
@@ -43,6 +44,12 @@ function creerCarte(pokemon) {
     return carte;
 }
 
+function rechercherPokemon(motCherche, listPokemons) {
+    // Permet à la barre de recherche d'afficher les pokemons selon Regex.
+    const regex = new RegExp(motCherche, "i");
+    return listPokemons.filter(pokemon => regex.test(pokemon.nom));
+}
+
 function afficherPokemons(liste) {
     // Insère les cartes de pokemons dans champPokemon.
     champPokemon.replaceChildren();
@@ -50,22 +57,34 @@ function afficherPokemons(liste) {
 }
 
 function ouvrirModalSuppression(carte) {
-    // N'affice pas actuellement un modal. Je le garde au cas où.
+    // N'affiche pas actuellement un modal. Je le garde au cas où.
     // Les suppression devraient toujours avoir un modal de confirmation.
     carte.remove();
     sessionStorage.clear();
-}
-
-function rechercherPokemon(motCherche, listPokemons) {
-    // Fonction pour la barre de recherche qui ferrait apparaître
-    // les Pokemons qui y correspondent en utilisant Regex.
-    const regex = new RegExp(motCherche, "i");
-    return listPokemons.filter(pokemon => regex.test(pokemon.nom));
 }
 
 // À chaque intéraction dans 'formulaireRecherche', ajoute l'EventListener.
 formulaireRecherche.addEventListener("input", () => {
     afficherPokemons(rechercherPokemon(champRecherche.value, tousLesPokemons)) });
 formulaireRecherche.addEventListener("submit", (e) => e.preventDefault());
-
 chargerPokemonAPI();
+
+
+// +=====+ Section pour l'aperçu des informations. +=====+
+function afficherInfoPokemonChoisi () {
+    // Todo: Affiche les informations selon la carte sélectionner.
+    document.getElementById("nomApercu").textContent = "";
+    document.getElementById("pointVieApercu").textContent = "";
+    document.getElementById("attaqueApercu").textContent = "";
+    document.getElementById("defenceApercu").textContent = "";
+    document.getElementById("vitesseApercu").textContent = "";
+
+    // Met à jour l'aperçu pour la liste de type.
+    const listeType = document.querySelector("card ol");
+    listeType.innerHTML = "";   // Vide les listes de l'aperçu.
+    const containerType = document.querySelectorAll("#containerType select")
+    containerType.forEach(select => {
+        const liste = document.createElement("li");
+        liste.textContent = select.value;
+        listeType.append(liste); } )
+}

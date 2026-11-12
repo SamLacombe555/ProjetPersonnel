@@ -1,8 +1,7 @@
 
 import { Pokemon } from "./pokemon.js";
 
-// +=====+ Déclarations des élèments pour les listes de types. +=====+
-// Déclarations des éléments du DOM.
+// +=====+ Section pour préparer les listes déroulantes. +=====+
 let compteType = 1;
 const listeSelectType = document.querySelector('#selectType1');
 const boutonAjoutType = document.querySelector('#AjouterType');
@@ -10,7 +9,6 @@ const typeValide = ["Normal","Feu","Eau","Electrique","Herbe","Glace",
             "Combattant","Poison","Sol","Volant","Psychique","Insect",
             "Roche","Fantome","Dragon","Sombre","Acier","Feerique"];
 
-// Déclaration des fonctions.
 function PreparerListeDeroulanteType(listeDeroulante) {
     // Remplis une 'select' élement avec 'typeValide'.
     for (let i=0; i<typeValide.length; i++) {
@@ -39,30 +37,30 @@ function AjouterListeDeroulanteType() {
         // Ajoute les nouvelles listeDéroulante avant le bouton d'ajout.
         blocListeDeroulante.append(labelListeDeroulante, listeDeroulante);
         boutonAjoutType.before(blocListeDeroulante);
-        
         if (compteType == 3) {boutonAjoutType.remove(); } }
 }
 
-// Déclarations d'écouteurs d'évènments.
 boutonAjoutType.addEventListener("click", AjouterListeDeroulanteType);
 PreparerListeDeroulanteType(listeSelectType);
 
 
-// +=====+ Création d'un nouveau Pokemon à partir du formulaire. +=====+
+// +=====+ Section de création d'un Pokemon à partir du formulaire. +=====+
+// CETTE PARTIE N'EST PAS À JOUR DEPUIS L'APPLICATION API DANS LE CODE.
 // Explication: compteur reçoit "compteurPokemon". S'il est false, parce qu'il ne contient
 //      pas un chiffre parce qu'on a accèder au fichier pour la première fois, le compteur
 //      commence à 0.
+
 let compteurPokemon = parseInt(sessionStorage.getItem("CompteurPokemon"), 10) || 0;
 const formulaire = document.getElementById("formulairePokemon");
 
 function creationPokemon(event) {
-    // Créer un pokemon avec les réponses du formulaire et l'envoie dans 'sessionstorage'.
-    compteurPokemon += 1;
+    // Créer un pokemon avec le formulaire et l'envoie dans 'sessionstorage'.
     event.preventDefault();
+    compteurPokemon += 1;
     
     const nom = document.getElementById("nom").value;
     const type = [];
-    // Boucle circule dans les boites de type afin de les mettre dans l'array 'type'.
+    // Circule dans les boites de type pour les mettre dans l'array 'type'.
     for (let i=1; i<=compteType; i++) {
         const typeChoisi = document.querySelector(`#selectType${i}`).value;
         type.push(typeChoisi); }
@@ -77,6 +75,7 @@ function creationPokemon(event) {
 }
 
 formulaire.addEventListener("submit", creationPokemon)
+
 
 // +=====+ Section pour la partie: Aperçu de la carte. +=====+
 function mettreAjourApercu () {
@@ -103,8 +102,7 @@ function mettreAjourApercu () {
     containerType.forEach(select => {
         const liste = document.createElement("li");
         liste.textContent = select.value;
-        listeType.append(liste); }
-    )
+        listeType.append(liste); } )
 }
 
 formulaire.addEventListener("input", mettreAjourApercu);

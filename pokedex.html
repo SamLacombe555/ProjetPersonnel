@@ -27,21 +27,11 @@
     </nav>
 
     <div class ="arrierePlanCentral">
-        <div class="row">
-            <div class="col-8 border border-primary">
-                <h1>Visiter le Pokedex</h1>
-                <p>Ici se trouvre tous les pokémons du Pokdex: </p>
+        <div class="border border-primary">
+            <h1>Visiter le Pokedex</h1>
+            <p>Ici se trouvre tous les pokémons du Pokdex: </p>
 
-                <form id="formulaireRecherche">
-                    <input class="form-control mr-sm-2" style="width:30%;" id="recherche" type="Search" name="Recherche" placeholder="Rechercher">
-                </form>
-
-                <div class="row row-cols-3" id="ChampPokemon">
-                    <!--Ici seront insérer les carte.-->
-                </div>
-            </div>
-
-            <div class="col-4 border border-secondary">
+            <div class="border border-secondary">
                 <h1>Information du Pokemon</h1>
                 <div class="p-3">
                     <card class="card border border-primary p-2">
@@ -58,7 +48,15 @@
                 </div>
             </div>
 
+            <form class="p-3" id="formulaireRecherche">
+                <input class="form-control" style="width:30%;" id="recherche" type="Search" name="Recherche" placeholder="Rechercher">
+            </form>
+
+            <div class="row row-cols-3 p-5" id="ChampPokemon">
+                <!--Ici seront insérer les carte.-->
+            </div>
         </div>
+
     </div>
 
 </body>
