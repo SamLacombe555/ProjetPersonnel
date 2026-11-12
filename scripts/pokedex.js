@@ -1,4 +1,3 @@
-import { Pokemon } from "./pokemon";
 
 // +=====+ Section de Chargement des Pokemons. +=====+
 let tousLesPokemons = [];
@@ -78,13 +77,4 @@ function afficherInfoPokemonChoisi () {
     document.getElementById("attaqueApercu").textContent = "";
     document.getElementById("defenceApercu").textContent = "";
     document.getElementById("vitesseApercu").textContent = "";
-
-    // Met à jour l'aperçu pour la liste de type.
-    const listeType = document.querySelector("card ol");
-    listeType.innerHTML = "";   // Vide les listes de l'aperçu.
-    const containerType = document.querySelectorAll("#containerType select")
-    containerType.forEach(select => {
-        const liste = document.createElement("li");
-        liste.textContent = select.value;
-        listeType.append(liste); } )
 }
