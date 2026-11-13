@@ -76,11 +76,11 @@ function ouvrirModalSuppression(carte) {
     sessionStorage.clear();
 }
 
-function trouverTypesMatch(types) {
-    for (const t of types) {
-        if (tousLesTypes.(t) === -1) {}
-    }
-}
+//function trouverTypesMatch(types) {
+  //  for (const t of types) {
+    //    if (tousLesTypes.(t) === -1) {}
+    //}
+//}
 
 // À chaque intéraction dans 'formulaireRecherche', ajoute l'EventListener.
 formulaireRecherche.addEventListener("input", () => {
