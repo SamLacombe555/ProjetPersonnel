@@ -3,6 +3,7 @@ import { Pokemon } from "./pokemon.js";
 
 // +=====+ Section pour préparer les listes déroulantes. +=====+
 let compteType = 1;
+const formulaire = document.getElementById("formulairePokemon");
 const listeSelectType = document.querySelector('#selectType1');
 const boutonAjoutType = document.querySelector('#AjouterType');
 const typeValide = ["Normal","Feu","Eau","Electrik","Plante","Glace",
@@ -19,7 +20,7 @@ function PreparerListeDeroulanteType(listeDeroulante) {
 
 function AjouterListeDeroulanteType() {
     // Ajoute un 'select' élement dans le 'containerType'.
-    if (compteType < 3) {
+    if (compteType < 2) {
         compteType += 1;
         const blocListeDeroulante = document.createElement('div');
         const labelListeDeroulante = document.createElement('label');
@@ -37,44 +38,11 @@ function AjouterListeDeroulanteType() {
         // Ajoute les nouvelles listeDéroulante avant le bouton d'ajout.
         blocListeDeroulante.append(labelListeDeroulante, listeDeroulante);
         boutonAjoutType.before(blocListeDeroulante);
-        if (compteType == 3) {boutonAjoutType.remove(); } }
+        if (compteType == 2) {boutonAjoutType.remove(); } }
 }
 
 boutonAjoutType.addEventListener("click", AjouterListeDeroulanteType);
 PreparerListeDeroulanteType(listeSelectType);
-
-
-// +=====+ Section de création d'un Pokemon à partir du formulaire. +=====+
-// CETTE PARTIE N'EST PAS À JOUR DEPUIS L'APPLICATION API DANS LE CODE.
-// Explication: compteur reçoit "compteurPokemon". S'il est false, parce qu'il ne contient
-//      pas un chiffre parce qu'on a accèder au fichier pour la première fois, le compteur
-//      commence à 0.
-
-let compteurPokemon = parseInt(sessionStorage.getItem("CompteurPokemon"), 10) || 0;
-const formulaire = document.getElementById("formulairePokemon");
-
-function creationPokemon(event) {
-    // Créer un pokemon avec le formulaire et l'envoie dans 'sessionstorage'.
-    event.preventDefault();
-    compteurPokemon += 1;
-    
-    const nom = document.getElementById("nom").value;
-    const type = [];
-    // Circule dans les boites de type pour les mettre dans l'array 'type'.
-    for (let i=1; i<=compteType; i++) {
-        const typeChoisi = document.querySelector(`#selectType${i}`).value;
-        type.push(typeChoisi); }
-    const pointVie = document.getElementById("pointVie").value;
-    const attaque = document.getElementById("attaque").value;
-    const defence = document.getElementById("defence").value;
-    const vitesse = document.getElementById("vitesse").value;
-    const pokemon = new Pokemon(compteurPokemon, nom, type, pointVie, attaque, defence, vitesse);
-    
-    sessionStorage.setItem("CompteurPokemon", compteurPokemon);
-    sessionStorage.setItem(`Pokemon${compteurPokemon}`, JSON.stringify(pokemon));
-}
-
-formulaire.addEventListener("submit", creationPokemon)
 
 
 // +=====+ Section pour la partie: Aperçu de la carte. +=====+
@@ -107,3 +75,50 @@ function mettreAjourApercu () {
 
 formulaire.addEventListener("input", mettreAjourApercu);
 mettreAjourApercu();
+
+
+// +=====+ Section de création d'un Pokemon à partir du formulaire. +=====+
+let tousLesPokemons = [];
+let compteurPokemonId = 0;
+async function compterPokemonIdAPI() {
+    // Va chercher les données de mockapi et les met dans 'tousLesPokemons'.
+    const reponse = await fetch("https://6af2194542c6561ced390228.mockapi.io/Pokemon")
+    if (!reponse.ok) {throw new Error(`Erreur: ${reponse.status}`); } 
+    tousLesPokemons = await reponse.json();
+    compteurPokemonId = tousLesPokemons.length;
+}
+
+async function creationPokemon(event) {
+    // Créer un pokemon avec le formulaire et l'envoie dans 'sessionstorage'.
+    event.preventDefault();
+    compteurPokemonId += 1;
+    
+    const nom = document.getElementById("nom").value;
+    const type = [];
+    // Circule dans les boites de type pour les mettre dans l'array 'type'.
+    for (let i=1; i<=compteType; i++) {
+        const typeChoisi = document.querySelector(`#selectType${i}`).value;
+        type.push(typeChoisi); }
+    const pointVie = document.getElementById("pointVie").value;
+    const attaque = document.getElementById("attaque").value;
+    const defence = document.getElementById("defence").value;
+    const vitesse = document.getElementById("vitesse").value;
+    const pokemon = new Pokemon(compteurPokemonId, nom, type, pointVie, attaque, defence, vitesse);
+    
+    // Envoye le pokemon crée dans l'API.
+    const reponse = await fetch("https://6af2194542c6561ced390228.mockapi.io/Pokemon", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(pokemon)
+    })
+    if (!reponse.ok) {throw new Error(`Erreur: ${reponse.status}`)}
+    const Verification = await reponse.json();
+    console.log(Verification)
+
+    // Cette partie sera remplacer pour l'API.
+    // sessionStorage.setItem("CompteurPokemon", compteurPokemonId);
+    // sessionStorage.setItem(`Pokemon${compteurPokemonId}`, JSON.stringify(pokemon));
+}
+
+formulaire.addEventListener("submit", creationPokemon)
+compterPokemonIdAPI();
