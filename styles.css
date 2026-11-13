@@ -23,7 +23,7 @@
     align-items: center;
     justify-content: space-between;
     position: sticky;
-    z-index: 1000;  /*Permet de le mettre par dessus les cartes.*/
+    z-index: 1000;  /*Met par dessus les cartes.*/
     top: 0;
     
     color: white;

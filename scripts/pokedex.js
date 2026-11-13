@@ -19,6 +19,7 @@ function creerCarte(pokemon) {
     const carte = document.createElement('div');
     const nom = document.createElement('h3');
     const type = document.createElement('p');
+    const image = document.createElement('img');
     const btnInspecter = document.createElement('button');
     const btnSupprimer = document.createElement('button');
 
@@ -30,6 +31,9 @@ function creerCarte(pokemon) {
     // 't' est l'index de l'array 'pokemon.type'.
     type.textContent = pokemon.type.map(t => `| ${t} `).join('');
 
+    image.src = "./multimedia/pikachuAhhOutline.png";
+    image.classList = 'card-img-top';
+
     btnInspecter.type = 'button';
     btnInspecter.classList = 'btn btn-info';
     btnInspecter.textContent = 'Inspecter';
@@ -40,7 +44,7 @@ function creerCarte(pokemon) {
     btnSupprimer.textContent = 'Enlever carte';
     btnSupprimer.addEventListener("click", () => {ouvrirModalSuppression(carte)})
 
-    carte.append(nom, type, btnInspecter, btnSupprimer);
+    carte.append(nom, type, image, btnInspecter, btnSupprimer);
     return carte;
 }
 
@@ -74,8 +78,9 @@ chargerPokemonAPI();
 function afficherInfoPokemonChoisi (pokemon) {
     // Todo: Affiche les informations selon la carte sélectionner.
     document.getElementById("nomApercu").textContent = pokemon.nom;
+    document.getElementById("imageApercu").src = "./multimedia/pikachuAhhOutline.png";
     document.getElementById("pointVieApercu").textContent = `Point de vie: ${pokemon.hp}`;
-    document.getElementById("attaqueApercu").textContent = `Point d'attaque:' ${pokemon.attaque}`;
+    document.getElementById("attaqueApercu").textContent = `Point d'attaque: ${pokemon.attaque}`;
     document.getElementById("defenceApercu").textContent = `Point de défense: ${pokemon.defence}`
     document.getElementById("vitesseApercu").textContent = `Point de vitesse: ${pokemon.vitesse}`;
 }
