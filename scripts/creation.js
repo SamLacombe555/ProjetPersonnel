@@ -5,9 +5,9 @@ import { Pokemon } from "./pokemon.js";
 let compteType = 1;
 const listeSelectType = document.querySelector('#selectType1');
 const boutonAjoutType = document.querySelector('#AjouterType');
-const typeValide = ["Normal","Feu","Eau","Electrique","Herbe","Glace",
-            "Combattant","Poison","Sol","Volant","Psychique","Insect",
-            "Roche","Fantome","Dragon","Sombre","Acier","Feerique"];
+const typeValide = ["Normal","Feu","Eau","Electrik","Plante","Glace",
+            "Combat","Poison","Sol","Vol","Psy","Insecte","Roche",
+            "Spectre","Dragon","Tenebres","Acier","Fee"];
 
 function PreparerListeDeroulanteType(listeDeroulante) {
     // Remplis une 'select' élement avec 'typeValide'.

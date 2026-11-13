@@ -1,5 +1,6 @@
 
 // +=====+ Section de Chargement des Pokemons. +=====+
+let pokemonInspecter = String;
 let tousLesPokemons = [];
 const champPokemon = document.getElementById("ChampPokemon");
 const formulaireRecherche = document.getElementById("formulaireRecherche");
@@ -29,11 +30,11 @@ function creerCarte(pokemon) {
     // 't' est l'index de l'array 'pokemon.type'.
     type.textContent = pokemon.type.map(t => `| ${t} `).join('');
 
-    // Todo: Faire en sorte que quand on clique 'Inspecter', que le
-    //      programme comprend que le sélectionne.
     btnInspecter.type = 'button';
     btnInspecter.classList = 'btn btn-info';
     btnInspecter.textContent = 'Inspecter';
+    btnInspecter.addEventListener("click", () => {afficherInfoPokemonChoisi(pokemon)})
+
     btnSupprimer.type = 'button';
     btnSupprimer.classList = 'btn btn-warning';
     btnSupprimer.textContent = 'Enlever carte';
@@ -70,11 +71,11 @@ chargerPokemonAPI();
 
 
 // +=====+ Section pour l'aperçu des informations. +=====+
-function afficherInfoPokemonChoisi () {
+function afficherInfoPokemonChoisi (pokemon) {
     // Todo: Affiche les informations selon la carte sélectionner.
-    document.getElementById("nomApercu").textContent = "";
-    document.getElementById("pointVieApercu").textContent = "";
-    document.getElementById("attaqueApercu").textContent = "";
-    document.getElementById("defenceApercu").textContent = "";
-    document.getElementById("vitesseApercu").textContent = "";
+    document.getElementById("nomApercu").textContent = pokemon.nom;
+    document.getElementById("pointVieApercu").textContent = `Point de vie: ${pokemon.hp}`;
+    document.getElementById("attaqueApercu").textContent = `Point d'attaque:' ${pokemon.attaque}`;
+    document.getElementById("defenceApercu").textContent = `Point de défense: ${pokemon.defence}`
+    document.getElementById("vitesseApercu").textContent = `Point de vitesse: ${pokemon.vitesse}`;
 }

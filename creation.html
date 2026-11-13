@@ -11,6 +11,8 @@
     <link href="./styles.css" rel="stylesheet" type="text/css">
     <!-- Importation des style Bootstrap et CSS. -->
     <script src="./scripts/creation.js" type="module"></script>
+    <!-- Empêche une erreur. Ça se passe parce qu'on a pas d'icon. -->
+    <link rel="icon" href="data:,">
 </head>
 
 <body>
@@ -74,7 +76,7 @@
                 <h1>Aperçu de la carte</h1>
                 <div class="p-3">
                     <card class="card border border-primary p-2">
-                        <h2 id="nomApercu">NomApercu</h3>
+                        <h2 id="nomApercu">NomApercu</h2>
                         <p id="pointVieApercu">0</p>
                         <p id="attaqueApercu">0</p>
                         <p id="defenceApercu">0</p>

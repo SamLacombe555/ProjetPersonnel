@@ -14,7 +14,7 @@ export class Pokemon {
     #vitesse = 10
 
     // Déclaration du constructeur.
-    constructor(id, nom, type, niveau, hp, attaque, defence, vitesse){
+    constructor(id, nom, type, hp, attaque, defence, vitesse){
         this.#id = id
         this.#nom = nom
         this.#type = type

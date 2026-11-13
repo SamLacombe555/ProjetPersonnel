@@ -11,6 +11,8 @@
     <link href="./styles.css" rel="stylesheet" type="text/css">
     <!-- Importation des style Bootstrap et CSS. -->
     <script src="./scripts/pokedex.js" type="module"></script>
+    <!-- Empêche une erreur. Ça se passe parce qu'on a pas d'icon. -->
+    <link rel="icon" href="data:,">
 </head>
 
 <body>
@@ -35,8 +37,7 @@
                 <h1>Information du Pokemon</h1>
                 <div class="p-3">
                     <card class="card border border-primary p-2">
-                        <h2 id="nomApercu"></h2>
-                        <p id="niveauApercu">Ne fonctionne pas encore.</p>
+                        <h2 id="nomApercu">Cliquer sur un pokemon.</h2>
                         <p id="pointVieApercu"></p>
                         <p id="attaqueApercu"></p>
                         <p id="defenceApercu"></p>
