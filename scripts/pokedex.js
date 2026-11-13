@@ -31,6 +31,7 @@ function creerCarte(pokemon) {
     // 't' est l'index de l'array 'pokemon.type'.
     type.textContent = pokemon.type.map(t => `| ${t} `).join('');
 
+    // Il faudra qu'on ajoute le .src dans l'API.
     image.src = "./multimedia/pikachuAhhOutline.png";
     image.classList = 'card-img-top';
 
@@ -76,11 +77,19 @@ chargerPokemonAPI();
 
 // +=====+ Section pour l'aperçu des informations. +=====+
 function afficherInfoPokemonChoisi (pokemon) {
-    // Todo: Affiche les informations selon la carte sélectionner.
+    // Affiche les informations selon la carte sélectionner.
     document.getElementById("nomApercu").textContent = pokemon.nom;
+    // Les pokemons n'ont pas encore une parametre pour leur image, y faudra en ajouter un.
     document.getElementById("imageApercu").src = "./multimedia/pikachuAhhOutline.png";
     document.getElementById("pointVieApercu").textContent = `Point de vie: ${pokemon.hp}`;
     document.getElementById("attaqueApercu").textContent = `Point d'attaque: ${pokemon.attaque}`;
     document.getElementById("defenceApercu").textContent = `Point de défense: ${pokemon.defence}`
     document.getElementById("vitesseApercu").textContent = `Point de vitesse: ${pokemon.vitesse}`;
+
+    const listeType = document.getElementById("typeApercu");
+    listeType.innerHTML = "";   // Vide les listes de l'aperçu.
+    for (let type of pokemon.type) {
+        const liste = document.createElement("li");
+        liste.textContent = type;
+        listeType.append(liste); }
 }
