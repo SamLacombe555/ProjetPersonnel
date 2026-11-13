@@ -2,6 +2,7 @@
 // +=====+ Section de Chargement des Pokemons. +=====+
 let pokemonInspecter = String;
 let tousLesPokemons = [];
+let tousLesTypes = [];
 const champPokemon = document.getElementById("ChampPokemon");
 const formulaireRecherche = document.getElementById("formulaireRecherche");
 const champRecherche = document.getElementById("recherche");
@@ -12,6 +13,13 @@ async function chargerPokemonAPI() {
     if (!reponse.ok) {throw new Error(`Erreur: ${reponse.status}`); } 
     tousLesPokemons = await reponse.json();
     afficherPokemons(tousLesPokemons);
+}
+
+async function creerTypes() {
+    // Va chercher les données de mockapi et les met dans tousLesTypes
+    const reponse = await fetch("https://6af2194542c6561ced390228.mockapi.io/:endpoint")
+    if (!reponse.ok) {throw new Error(`Erreur: ${reponse.status}`); }
+    tousLesTypes = await reponse.json();
 }
 
 function creerCarte(pokemon) {
@@ -66,6 +74,12 @@ function ouvrirModalSuppression(carte) {
     // Les suppression devraient toujours avoir un modal de confirmation.
     carte.remove();
     sessionStorage.clear();
+}
+
+function trouverTypesMatch(types) {
+    for (const t of types) {
+        if (tousLesTypes.(t) === -1) {}
+    }
 }
 
 // À chaque intéraction dans 'formulaireRecherche', ajoute l'EventListener.

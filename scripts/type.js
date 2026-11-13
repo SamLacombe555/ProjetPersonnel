@@ -10,11 +10,12 @@ export class Type {
     #immune = []
 
     // Déclaration du constructeur
-    constructor(nom, faiblesses = [], resistances = [], immune = []) {
+    constructor(nom, faiblesses = [], resistances = [], immune = [], id) {
         this.#nom = nom;
         this.#faiblesses = faiblesses;
         this.#resistances = resistances;
         this.#immune = immune;
+        this.#id = id
 
         // Ajoute automatiquement le type à la liste.
         Type.listeTypes.push(this);
@@ -24,6 +25,9 @@ export class Type {
     // 'get' offre la permission de lire et 'set' donne la permission d'écrire.
     get nom(){return this.#nom}
     set nom(nom){this.#nom = nom;}
+
+    get #id(){return this.#id}
+    set #id(ID){this.id = id}
 
     get faiblesses(){return this.#faiblesses}
     set faiblesses(faiblesses){this.#faiblesses = faiblesses}
