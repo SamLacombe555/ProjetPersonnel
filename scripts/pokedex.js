@@ -15,13 +15,6 @@ async function chargerPokemonAPI() {
     afficherPokemons(tousLesPokemons);
 }
 
-async function creerTypes() {
-    // Va chercher les données de mockapi et les met dans tousLesTypes
-    const reponse = await fetch("https://6af2194542c6561ced390228.mockapi.io/:endpoint")
-    if (!reponse.ok) {throw new Error(`Erreur: ${reponse.status}`); }
-    tousLesTypes = await reponse.json();
-}
-
 function creerCarte(pokemon) {
     // Créer et retourne la carte d'un pokemon.
     const carte = document.createElement('div');
@@ -30,6 +23,7 @@ function creerCarte(pokemon) {
     const image = document.createElement('img');
     const btnInspecter = document.createElement('button');
     const btnSupprimer = document.createElement('button');
+    const imageChoisi = Math.floor(Math.random()*5);
 
     carte.classList = 'card p-3';
     nom.textContent = pokemon.nom;
@@ -39,14 +33,18 @@ function creerCarte(pokemon) {
     // 't' est l'index de l'array 'pokemon.type'.
     type.textContent = pokemon.type.map(t => `| ${t} `).join('');
 
-    // Il faudra qu'on ajoute le .src dans l'API.
-    image.src = "./multimedia/pikachuAhhOutline.png";
+    // Les images ne viennet pas de l'API, ils seront choisi aléatoirement.
+    if (imageChoisi == 0) {image.src = "./multimedia/CharizardAhhOutline.png";}
+    else if (imageChoisi == 1) {image.src = "./multimedia/GreninjaAhhOutline.png";}
+    else if (imageChoisi == 2) {image.src = "./multimedia/MewtwoAhhOutline.png";}
+    else if (imageChoisi == 3) {image.src = "./multimedia/PikachuAhhOutline.png";}
+    else if (imageChoisi == 4) {image.src = "./multimedia/RayquazaAhhOutline.png";}
     image.classList = 'card-img-top';
 
     btnInspecter.type = 'button';
     btnInspecter.classList = 'btn btn-info';
     btnInspecter.textContent = 'Inspecter';
-    btnInspecter.addEventListener("click", () => {afficherInfoPokemonChoisi(pokemon)})
+    btnInspecter.addEventListener("click", () => {afficherInfoPokemonChoisi(pokemon, image.src)})
 
     btnSupprimer.type = 'button';
     btnSupprimer.classList = 'btn btn-warning';
@@ -76,12 +74,6 @@ function ouvrirModalSuppression(carte) {
     sessionStorage.clear();
 }
 
-//function trouverTypesMatch(types) {
-  //  for (const t of types) {
-    //    if (tousLesTypes.(t) === -1) {}
-    //}
-//}
-
 // À chaque intéraction dans 'formulaireRecherche', ajoute l'EventListener.
 formulaireRecherche.addEventListener("input", () => {
     afficherPokemons(rechercherPokemon(champRecherche.value, tousLesPokemons)) });
@@ -90,20 +82,32 @@ chargerPokemonAPI();
 
 
 // +=====+ Section pour l'aperçu des informations. +=====+
-function afficherInfoPokemonChoisi (pokemon) {
+function afficherInfoPokemonChoisi (pokemon, imagesrc) {
     // Affiche les informations selon la carte sélectionner.
-    document.getElementById("nomApercu").textContent = pokemon.nom;
-    // Les pokemons n'ont pas encore une parametre pour leur image, y faudra en ajouter un.
-    document.getElementById("imageApercu").src = "./multimedia/pikachuAhhOutline.png";
-    document.getElementById("pointVieApercu").textContent = `Point de vie: ${pokemon.hp}`;
-    document.getElementById("attaqueApercu").textContent = `Point d'attaque: ${pokemon.attaque}`;
-    document.getElementById("defenceApercu").textContent = `Point de défense: ${pokemon.defence}`
-    document.getElementById("vitesseApercu").textContent = `Point de vitesse: ${pokemon.vitesse}`;
+    document.getElementById("nomAfficher").textContent = pokemon.nom;
+    document.getElementById("imageAfficher").src = imagesrc;
+    document.getElementById("pointVieAfficher").textContent = `Point de vie: ${pokemon.hp}`;
+    document.getElementById("attaqueAfficher").textContent = `Point d'attaque: ${pokemon.attaque}`;
+    document.getElementById("defenceAfficher").textContent = `Point de défense: ${pokemon.defence}`
+    document.getElementById("vitesseAfficher").textContent = `Point de vitesse: ${pokemon.vitesse}`;
 
-    const listeType = document.getElementById("typeApercu");
+    const listeType = document.getElementById("typesAfficher");
     listeType.innerHTML = "";   // Vide les listes de l'aperçu.
     for (let type of pokemon.type) {
         const liste = document.createElement("li");
         liste.textContent = type;
         listeType.append(liste); }
 }
+
+async function creerTypes() {
+    // Va chercher les données de mockapi et les met dans tousLesTypes
+    const reponse = await fetch("https://6af2194542c6561ced390228.mockapi.io/:endpoint")
+    if (!reponse.ok) {throw new Error(`Erreur: ${reponse.status}`); }
+    tousLesTypes = await reponse.json();
+}
+
+//function trouverTypesMatch(types) {
+  //  for (const t of types) {
+    //    if (tousLesTypes.(t) === -1) {}
+    //}
+//}
