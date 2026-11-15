@@ -1,11 +1,32 @@
 
 // +=====+ Section de Chargement des Pokemons. +=====+
-let pokemonInspecter = String;
+let pokemonInspecter = "";
 let tousLesPokemons = [];
 let tousLesTypes = [];
 const champPokemon = document.getElementById("ChampPokemon");
 const formulaireRecherche = document.getElementById("formulaireRecherche");
 const champRecherche = document.getElementById("recherche");
+const couleursTypes = {
+    // Hésite pas à changer des couleurs.
+    normal: "#A8A77A",
+    feu:    "#EE8130",
+    eau:    "#6390F0",
+    electrik:"#7AC74C",
+    plante: "#F7D02C",
+    glace:  "#96D9D6",
+    combat: "#C22E28",
+    poison: "#A33EA1",
+    sol:    "#E2BF65",
+    vol:    "#A98FF3",
+    psy:    "#F95587",
+    insecte:"#A6B91A",
+    roche:  "#B6A136",
+    spectre:"#735797",
+    dragon: "#6F35FC",
+    tenebres:"#705746",
+    acier:  "#B7B7CE",
+    fee:    "#D685AD"
+};
 
 async function chargerPokemonAPI() {
     // Va chercher les données de mockapi et les met dans 'tousLesPokemons'.
@@ -15,43 +36,39 @@ async function chargerPokemonAPI() {
     afficherPokemons(tousLesPokemons);
 }
 
+function creerBadgesType(nomType) {
+    // Créer des badges pour les types.
+    const badge = document.createElement("span");
+    const type = nomType.toLowerCase();
+    badge.textContent = nomType;
+    badge.classList = "badge me-1 mb-1";
+    badge.style.color = "white";
+    badge.style.backgroundColor = couleursTypes[type];
+    return badge
+}
+
 function creerCarte(pokemon) {
     // Créer et retourne la carte d'un pokemon.
     const carte = document.createElement('div');
     const nom = document.createElement('h3');
-    const type = document.createElement('p');
+    const types = document.createElement('div');
     const image = document.createElement('img');
-    const btnInspecter = document.createElement('button');
-    const btnSupprimer = document.createElement('button');
     const imageChoisi = Math.floor(Math.random()*5);
 
     carte.classList = 'card p-3';
     nom.textContent = pokemon.nom;
-    // '.map()' est semblable à '.join()', différence est:
-    // '.map()' ajuste le string lui même.  -> "| Plante "  "| Combat "
-    // '.join()' rejoint les deux string.   -> "| Plante | Combat "
-    // 't' est l'index de l'array 'pokemon.type'.
-    type.textContent = pokemon.type.map(t => `| ${t} `).join('');
+    for (const type of pokemon.type) {types.append(creerBadgesType(type));}
 
     // Les images ne viennet pas de l'API, ils seront choisi aléatoirement.
-    if (imageChoisi == 0) {image.src = "./multimedia/CharizardAhhOutline.png";}
-    else if (imageChoisi == 1) {image.src = "./multimedia/GreninjaAhhOutline.png";}
-    else if (imageChoisi == 2) {image.src = "./multimedia/MewtwoAhhOutline.png";}
-    else if (imageChoisi == 3) {image.src = "./multimedia/PikachuAhhOutline.png";}
-    else if (imageChoisi == 4) {image.src = "./multimedia/RayquazaAhhOutline.png";}
+    if (imageChoisi == 0) {image.src = "./multimedia/CharizardAhhShadow.png";}
+    else if (imageChoisi == 1) {image.src = "./multimedia/GreninjaAhhShadow.png";}
+    else if (imageChoisi == 2) {image.src = "./multimedia/MewtwoAhhShadow.png";}
+    else if (imageChoisi == 3) {image.src = "./multimedia/PikachuAhhShadow.png";}
+    else if (imageChoisi == 4) {image.src = "./multimedia/RayquazaAhhShadow.png";}
     image.classList = 'card-img-top border border-dark';
 
-    //btnInspecter.type = 'button';
-    //btnInspecter.classList = 'btn btn-info';
-    //btnInspecter.textContent = 'Inspecter';
     carte.addEventListener("click", () => {afficherInfoPokemonChoisi(pokemon, image.src)})
-
-    // btnSupprimer.type = 'button';
-    // btnSupprimer.classList = 'btn btn-warning';
-    // btnSupprimer.textContent = 'Enlever carte';
-    // btnSupprimer.addEventListener("click", () => {ouvrirModalSuppression(carte)})
-
-    carte.append(nom, type, image);
+    carte.append(nom, types, image);
     return carte;
 }
 
@@ -84,6 +101,7 @@ chargerPokemonAPI();
 // +=====+ Section pour l'aperçu des informations. +=====+
 function afficherInfoPokemonChoisi (pokemon, imagesrc) {
     // Affiche les informations selon la carte sélectionner.
+    document.getElementById("carteAfficher").style.display = "block";
     document.getElementById("nomAfficher").textContent = pokemon.nom;
     document.getElementById("imageAfficher").src = imagesrc;
     document.getElementById("pointVieAfficher").textContent = `Point de vie: ${pokemon.hp}`;
@@ -95,12 +113,9 @@ function afficherInfoPokemonChoisi (pokemon, imagesrc) {
         'error praesentium est molestias placeat quis, sit unde esse ullam quo distinctio, laudantium '+
         'dolorum nulla commodi. Doloribus magni culpa accusant'
 
-    const listeType = document.getElementById("typesAfficher");
-    listeType.innerHTML = "";   // Vide les listes de l'aperçu.
-    for (let type of pokemon.type) {
-        const liste = document.createElement("li");
-        liste.textContent = type;
-        listeType.append(liste); }
+    const listeTypes = document.getElementById("typesAfficher");
+    listeTypes.replaceChildren();
+    for (const type of pokemon.type) {listeTypes.append(creerBadgesType(type)); }
     
     document.getElementById("tailleAfficher").textContent = "Taille:";
     document.getElementById("poidsAfficher").textContent = "Poids:";

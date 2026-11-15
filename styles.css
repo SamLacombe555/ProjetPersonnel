@@ -52,6 +52,9 @@
 }
 
 /* Stylisation de la grille et des cartes. */
+.carteAfficher {
+    display: none;
+}
 .card {
     font-family: Oswald, sans-serif;
     color:white;
