@@ -103,7 +103,11 @@ async function creationPokemon(event) {
     const attaque = document.getElementById("attaque").value;
     const defence = document.getElementById("defence").value;
     const vitesse = document.getElementById("vitesse").value;
-    const pokemon = new Pokemon(compteurPokemonId, nom, type, pointVie, attaque, defence, vitesse);
+    const taille = document.getElementById("taille").value;
+    const poids = document.getElementById("poids").value;
+    const description = document.getElementById("description").value;
+    const pokemon = new Pokemon(compteurPokemonId, nom, type, pointVie, attaque, defence,
+        vitesse, taille, poids, description);
     
     // Envoye le pokemon crée dans l'API.
     const reponse = await fetch("https://6af2194542c6561ced390228.mockapi.io/Pokemon", {
