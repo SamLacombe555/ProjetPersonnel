@@ -8,11 +8,12 @@ const formulaireRecherche = document.getElementById("formulaireRecherche");
 const champRecherche = document.getElementById("recherche");
 const couleursTypes = {
     // Hésite pas à changer des couleurs.
+    // Acier et Electrik sont un peur difficile à lire.
     normal: "#A8A77A",
     feu:    "#EE8130",
     eau:    "#6390F0",
-    electrik:"#7AC74C",
-    plante: "#F7D02C",
+    electrik:"#F7D02C", 
+    plante: "#7AC74C",
     glace:  "#96D9D6",
     combat: "#C22E28",
     poison: "#A33EA1",
@@ -57,6 +58,7 @@ function creerCarte(pokemon) {
 
     carte.classList = 'card p-3';
     nom.textContent = pokemon.nom;
+    types.classList = 'mb-3';
     for (const type of pokemon.type) {types.append(creerBadgesType(type));}
 
     // Les images ne viennet pas de l'API, ils seront choisi aléatoirement.
@@ -84,13 +86,6 @@ function afficherPokemons(liste) {
     for (const pokemon of liste) {champPokemon.append(creerCarte(pokemon)); }
 }
 
-function ouvrirModalSuppression(carte) {
-    // N'affiche pas actuellement un modal. Je le garde au cas où.
-    // Les suppression devraient toujours avoir un modal de confirmation.
-    carte.remove();
-    sessionStorage.clear();
-}
-
 // À chaque intéraction dans 'formulaireRecherche', ajoute l'EventListener.
 formulaireRecherche.addEventListener("input", () => {
     afficherPokemons(rechercherPokemon(champRecherche.value, tousLesPokemons)) });
@@ -103,33 +98,17 @@ function afficherInfoPokemonChoisi (pokemon, imagesrc) {
     // Affiche les informations selon la carte sélectionner.
     document.getElementById("carteAfficher").style.display = "block";
     document.getElementById("nomAfficher").textContent = pokemon.nom;
+    document.getElementById("idAfficher").textContent = `ID: ${pokemon.id}`;
     document.getElementById("imageAfficher").src = imagesrc;
     document.getElementById("pointVieAfficher").textContent = `Point de vie: ${pokemon.hp}`;
     document.getElementById("attaqueAfficher").textContent = `Point d'attaque: ${pokemon.attaque}`;
     document.getElementById("defenceAfficher").textContent = `Point de défense: ${pokemon.defence}`
     document.getElementById("vitesseAfficher").textContent = `Point de vitesse: ${pokemon.vitesse}`;
-    document.getElementById("descriptionAfficher").textContent = 'Endroit qui est reservé pour une '+
-        'description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo expedita, '+
-        'error praesentium est molestias placeat quis, sit unde esse ullam quo distinctio, laudantium '+
-        'dolorum nulla commodi. Doloribus magni culpa accusant'
+    document.getElementById("descriptionAfficher").textContent = pokemon.description;
 
     const listeTypes = document.getElementById("typesAfficher");
     listeTypes.replaceChildren();
     for (const type of pokemon.type) {listeTypes.append(creerBadgesType(type)); }
-    
-    document.getElementById("tailleAfficher").textContent = "Taille:";
-    document.getElementById("poidsAfficher").textContent = "Poids:";
+    document.getElementById("tailleAfficher").textContent = `Taille: ${pokemon.taille} pied`;
+    document.getElementById("poidsAfficher").textContent = `Poids: ${pokemon.poids} livre`;
 }
-
-async function creerTypes() {
-    // Va chercher les données de mockapi et les met dans tousLesTypes
-    const reponse = await fetch("https://6af2194542c6561ced390228.mockapi.io/:endpoint")
-    if (!reponse.ok) {throw new Error(`Erreur: ${reponse.status}`); }
-    tousLesTypes = await reponse.json();
-}
-
-//function trouverTypesMatch(types) {
-  //  for (const t of types) {
-    //    if (tousLesTypes.(t) === -1) {}
-    //}
-//}

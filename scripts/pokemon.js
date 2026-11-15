@@ -1,9 +1,7 @@
 
 export class Pokemon {
-
     // Liste de tous les Pokemons créés.
     static listePokemons= [];
-
     // Déclaration de variables.
     #id = 1
     #nom = "nomPlaceHolder"
@@ -12,9 +10,21 @@ export class Pokemon {
     #attaque = 10
     #defence = 15
     #vitesse = 10
+    #taille = 5
+    #poids = 35
+    #description = ""
 
     // Déclaration du constructeur.
-    constructor(id, nom, type, hp, attaque, defence, vitesse){
+    constructor(id,
+            nom,
+            type,
+            hp,
+            attaque,
+            defence,
+            vitesse,
+            taille,
+            poids,
+            description){
         this.#id = id
         this.#nom = nom
         this.#type = type
@@ -22,7 +32,9 @@ export class Pokemon {
         this.#attaque = attaque
         this.#defence = defence
         this.#vitesse = vitesse
-
+        this.#taille = taille
+        this.#poids = poids
+        this.#description = description
         // Ajoute automatique le Pokemon à la liste.
         Pokemon.listePokemons.push(this);
     }
@@ -70,16 +82,34 @@ export class Pokemon {
         if (vitesse != int) {throw TypeError("La vitesse doit être de type int.")}
         this.#vitesse = vitesse }
 
+    get taille() {return this.#taille}
+    set taille(taille) {
+        if (taille != float) {throw TypeError("La taille doit être de type float.")}
+        this.#taille = taille }
+    
+    get poids() {return this.#poids}
+    set poids(poids) {
+        if (poids != float) {throw TypeError("Le poids doit être de type int.")}
+        this.#poids = poids }
+
+    get description() {return this.#description}
+    set description(description) {
+        if (description != string) {throw TypeError("La description doit être de type string.")}
+        this.#description = description }
+    
     // Déclarration des getters et setters.
     toJSON() {
         return {
-        id      : this.#id,
-        nom     : this.#nom,
-        type    : this.#type,
-        hp      : this.#hp,
-        attaque : this.#attaque,
-        defence : this.#defence,
-        vitesse : this.#vitesse
+        id          : this.#id,
+        nom         : this.#nom,
+        type        : this.#type,
+        hp          : this.#hp,
+        attaque     : this.#attaque,
+        defence     : this.#defence,
+        vitesse     : this.#vitesse,
+        taille      : this.#taille,
+        poids       : this.#poids,
+        description : this.#description
         }
     }
 }
