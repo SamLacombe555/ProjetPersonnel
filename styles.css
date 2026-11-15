@@ -41,22 +41,23 @@
 /* Stylisation de l'arrière-plan. */
 .arrierePlanCentral {
     width: 70%;
-    padding: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
     margin: auto;
-    background-color:#363636;
-    border: 5px solid #333333;
+    background-color: rgba(54, 54, 54, 0.9);
     /*border: 2px dashed blue;*/
+}
+.planCentral {
+    background-color: #363636;
 }
 
 /* Stylisation de la grille et des cartes. */
-.grid3 {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    padding: 10px;
-}
 .card {
+    font-family: Oswald, sans-serif;
     color:white;
     background-color: #363636;
+}
+.card:hover {
     border: 2px solid white;
 }
 
@@ -65,6 +66,10 @@ body {
     color: white;
     font-family: Verdana;
     background-color:#232023;
+    background-image: repeating-linear-gradient(
+        135deg, transparent, transparent
+        35px, #363636
+        35px, #363636 40px);
     /*background-color: #232023;*/
 }
 a, a:visited, a:hover, a:active {

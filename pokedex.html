@@ -28,45 +28,39 @@
         <a class="parametre" href="parametre.html" style="text-decoration: none">Paramètre</a>
     </nav>
 
-    <div class ="arrierePlanCentral p-5">
-        <div class="border border-primary">
-            <h1>Visiter le Pokedex</h1>
-            <p>Ici se trouve tous les pokémons du Pokdex: </p>
+    <div class="arrierePlanCentral">
+        <div class="planCentral ps-1 pe-1 pt-3">
+            <h1 class="ms-4">Visiter le Pokedex</h1>
+            <p class="ms-4">Ici se trouve tous les pokémons du Pokedex: </p>
 
             <div class="border border-secondary">
-                <h1>Information du Pokemon</h1>
-                <div class="p-3">
-                    <card class="card border border-primary pe-5 ps-5" style="width: 70%; margin: auto;">
-                        <h2 id="nomAfficher">Cliquer sur un pokemon.</h2>
-                        <div class="row row-cols-2">  
-                            <div>
-                                <img id="imageAfficher" class="border border-success" style="width: 100%;">
-                                <p id="pointVieAfficher"></p>
-                                <p id="attaqueAfficher"></p>
-                                <p id="defenceAfficher"></p>
-                                <p id="vitesseAfficher"></p>
-                            </div>
-                            <div>
-                                <p id="descriptionAfficher">Endroit qui est reservé pour une description. <br><br> 
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo expedita,
-                                    error praesentium est molestias placeat quis, sit unde esse ullam quo distinctio,
-                                    laudantium dolorum nulla commodi. Doloribus magni culpa accusantium.</p>
-                                <ol id="typesAfficher">
-                                <!-- On insère les types choisis.-->
-                                </ol>
-                                <p id="tailleAfficher">Taille:</p>
-                                <p id="poidsAfficher">Poids:</p>
-                            </div>
+                <card class="card border border-primary pe-5 ps-5 pt-3 pb-3" style="width: 70%; margin: auto;">
+                    <h2 id="nomAfficher">Cliquer sur un pokemon.</h2>
+                    <div class="row row-cols-2">
+                        <div>
+                            <img id="imageAfficher" class="border border-success" style="width: 100%;">
+                            <p id="pointVieAfficher"></p>
+                            <p id="attaqueAfficher"></p>
+                            <p id="defenceAfficher"></p>
+                            <p id="vitesseAfficher"></p>
                         </div>
-                    </card>
-                </div>
+                        <div>
+                            <p id="descriptionAfficher"></p>
+                            <ol id="typesAfficher">
+                            <!-- On insère les types choisis.-->
+                            </ol>
+                            <p id="tailleAfficher"></p>
+                            <p id="poidsAfficher"></p>
+                        </div>
+                    </div>
+                </card>
             </div>
 
-            <form class="m-3" id="formulaireRecherche">
+            <form class="ms-4 m-3" id="formulaireRecherche">
                 <input class="form-control" style="width:20%;" id="recherche" type="Search" name="Recherche" placeholder="Rechercher un pokemon">
             </form>
 
-            <div class="row row-cols-5 m-3" id="ChampPokemon">
+            <div class="row row-cols-5 ms-4 me-4" id="ChampPokemon">
                 <!--Ici seront insérer les carte.-->
             </div>
         </div>

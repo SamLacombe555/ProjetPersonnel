@@ -39,19 +39,19 @@ function creerCarte(pokemon) {
     else if (imageChoisi == 2) {image.src = "./multimedia/MewtwoAhhOutline.png";}
     else if (imageChoisi == 3) {image.src = "./multimedia/PikachuAhhOutline.png";}
     else if (imageChoisi == 4) {image.src = "./multimedia/RayquazaAhhOutline.png";}
-    image.classList = 'card-img-top';
+    image.classList = 'card-img-top border border-dark';
 
-    btnInspecter.type = 'button';
-    btnInspecter.classList = 'btn btn-info';
-    btnInspecter.textContent = 'Inspecter';
-    btnInspecter.addEventListener("click", () => {afficherInfoPokemonChoisi(pokemon, image.src)})
+    //btnInspecter.type = 'button';
+    //btnInspecter.classList = 'btn btn-info';
+    //btnInspecter.textContent = 'Inspecter';
+    carte.addEventListener("click", () => {afficherInfoPokemonChoisi(pokemon, image.src)})
 
-    btnSupprimer.type = 'button';
-    btnSupprimer.classList = 'btn btn-warning';
-    btnSupprimer.textContent = 'Enlever carte';
-    btnSupprimer.addEventListener("click", () => {ouvrirModalSuppression(carte)})
+    // btnSupprimer.type = 'button';
+    // btnSupprimer.classList = 'btn btn-warning';
+    // btnSupprimer.textContent = 'Enlever carte';
+    // btnSupprimer.addEventListener("click", () => {ouvrirModalSuppression(carte)})
 
-    carte.append(nom, type, image, btnInspecter, btnSupprimer);
+    carte.append(nom, type, image);
     return carte;
 }
 
@@ -90,6 +90,10 @@ function afficherInfoPokemonChoisi (pokemon, imagesrc) {
     document.getElementById("attaqueAfficher").textContent = `Point d'attaque: ${pokemon.attaque}`;
     document.getElementById("defenceAfficher").textContent = `Point de défense: ${pokemon.defence}`
     document.getElementById("vitesseAfficher").textContent = `Point de vitesse: ${pokemon.vitesse}`;
+    document.getElementById("descriptionAfficher").textContent = 'Endroit qui est reservé pour une '+
+        'description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo expedita, '+
+        'error praesentium est molestias placeat quis, sit unde esse ullam quo distinctio, laudantium '+
+        'dolorum nulla commodi. Doloribus magni culpa accusant'
 
     const listeType = document.getElementById("typesAfficher");
     listeType.innerHTML = "";   // Vide les listes de l'aperçu.
@@ -97,6 +101,9 @@ function afficherInfoPokemonChoisi (pokemon, imagesrc) {
         const liste = document.createElement("li");
         liste.textContent = type;
         listeType.append(liste); }
+    
+    document.getElementById("tailleAfficher").textContent = "Taille:";
+    document.getElementById("poidsAfficher").textContent = "Poids:";
 }
 
 async function creerTypes() {
