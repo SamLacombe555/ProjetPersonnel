@@ -4,8 +4,8 @@
     height: 50px;
     padding-left: 10%;
     padding-right: 10%;
-    display: flex;
 
+    display: flex;
     align-items: center;
     justify-content: space-between;
     
@@ -21,7 +21,8 @@
     display: flex;
 
     align-items: center;
-    justify-content: space-between;
+    gap: 5%;
+
     position: sticky;
     z-index: 1000;  /*Met par dessus les cartes.*/
     top: 0;
@@ -85,23 +86,30 @@
     border: 2px solid #5FD068;
 }
 .containerTypes {
-    border-radius: 10px 10px 20px 0px;
+    background-color: #303030;
+    border-radius: 10px 10px 20px 10px;
 }
 .containerFaiblesses {
-    border-radius: 10px 10px 20px 0px;
+    background-color: #303030;
+    border-radius: 10px 10px 20px 10px;
+}
+.containerResistances {
+    background-color: #303030;
+    border-radius: 10px 10px 20px 10px;
 }
 .card {
     font-family: Oswald, sans-serif;
     color:white;
     background-color: #363636;
 }
-img {
-    background-color: #303030;
-}
 .card:hover {
     border-top: 2px solid orange;
     border-bottom: 2px solid orange;
 }
+img {
+    background-color: #303030;
+}
+
 
 /* Stylisation des balises de corps. */
 body {
