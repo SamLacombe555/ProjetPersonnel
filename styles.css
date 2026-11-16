@@ -60,6 +60,12 @@
     display: none;
     font-family: Oswald, sans-serif
 }
+.containerTypes {
+    border-radius: 10px 10px 20px 0px;
+}
+.containerFaiblesses {
+    border-radius: 10px 10px 20px 0px;
+}
 .card {
     font-family: Oswald, sans-serif;
     color:white;
