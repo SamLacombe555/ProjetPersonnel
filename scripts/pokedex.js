@@ -9,24 +9,24 @@ const champRecherche = document.getElementById("recherche");
 const couleursTypes = {
     // Hésite pas à changer des couleurs.
     // Acier et Electrik sont un peur difficile à lire.
-    normal: "#A8A77A",
-    feu:    "#EE8130",
-    eau:    "#6390F0",
-    electrik:"#F7D02C", 
-    plante: "#7AC74C",
-    glace:  "#96D9D6",
+    normal: "#78774E",
+    feu:    "#BB580F",
+    eau:    "#326DEB",
+    electrik:"#8C7205",
+    plante: "#4A8229",
+    glace:  "#2F817D",
     combat: "#C22E28",
     poison: "#A33EA1",
-    sol:    "#E2BF65",
-    vol:    "#A98FF3",
-    psy:    "#F95587",
-    insecte:"#A6B91A",
-    roche:  "#B6A136",
+    sol:    "#906F1B",
+    vol:    "#7F58ED",
+    psy:    "#E7084C",
+    insecte:"#6E7A11",
+    roche:  "#837427",
     spectre:"#735797",
     dragon: "#6F35FC",
     tenebres:"#705746",
-    acier:  "#B7B7CE",
-    fee:    "#D685AD"
+    acier:  "#71719E",
+    fee:    "#C14884"
 };
 
 async function chargerPokemonAPI() {
@@ -56,10 +56,10 @@ function creerCarte(pokemon) {
     const image = document.createElement('img');
     const imageChoisi = Math.floor(Math.random()*5);
 
-    carte.classList = 'card p-3';
+    carte.classList = 'card p-3 mb-3';
     nom.textContent = pokemon.nom;
     types.classList = 'mb-3';
-    for (const type of pokemon.type) {types.append(creerBadgesType(type));}
+    for (const type of pokemon.types) {types.append(creerBadgesType(type));}
 
     // Les images ne viennet pas de l'API, ils seront choisi aléatoirement.
     if (imageChoisi == 0) {image.src = "./multimedia/CharizardAhhShadow.png";}
@@ -67,7 +67,7 @@ function creerCarte(pokemon) {
     else if (imageChoisi == 2) {image.src = "./multimedia/MewtwoAhhShadow.png";}
     else if (imageChoisi == 3) {image.src = "./multimedia/PikachuAhhShadow.png";}
     else if (imageChoisi == 4) {image.src = "./multimedia/RayquazaAhhShadow.png";}
-    image.classList = 'card-img-top border border-dark';
+    image.classList = 'card-img-top';
 
     carte.addEventListener("click", () => {afficherInfoPokemonChoisi(pokemon, image.src)})
     carte.append(nom, types, image);
@@ -96,6 +96,7 @@ chargerPokemonAPI();
 // +=====+ Section pour l'aperçu des informations. +=====+
 function afficherInfoPokemonChoisi (pokemon, imagesrc) {
     // Affiche les informations selon la carte sélectionner.
+    document.documentElement.scrollTop = 0;
     document.getElementById("carteAfficher").style.display = "block";
     document.getElementById("nomAfficher").textContent = pokemon.nom;
     document.getElementById("idAfficher").textContent = `ID: ${pokemon.id}`;
@@ -107,8 +108,11 @@ function afficherInfoPokemonChoisi (pokemon, imagesrc) {
     document.getElementById("descriptionAfficher").textContent = pokemon.description;
 
     const listeTypes = document.getElementById("typesAfficher");
+    const listeFaiblesse = document.getElementById("faiblessesAfficher");
     listeTypes.replaceChildren();
-    for (const type of pokemon.type) {listeTypes.append(creerBadgesType(type)); }
-    document.getElementById("tailleAfficher").textContent = `Taille: ${pokemon.taille} pied`;
-    document.getElementById("poidsAfficher").textContent = `Poids: ${pokemon.poids} livre`;
+    listeFaiblesse.replaceChildren();
+    for (const type of pokemon.types) {listeTypes.append(creerBadgesType(type)); }
+    for (const faiblesse of pokemon.faiblesses) {listeFaiblesse.append(creerBadgesType(faiblesse)); }
+    document.getElementById("tailleAfficher").textContent = `Taille: ${pokemon.taille} m`;
+    document.getElementById("poidsAfficher").textContent = `Poids: ${pokemon.poids} kg`;
 }

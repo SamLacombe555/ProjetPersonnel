@@ -4,20 +4,22 @@ export class Pokemon {
     static listePokemons= [];
     // Déclaration de variables.
     #id = 1
-    #nom = "nomPlaceHolder"
-    #type = ["TypePlaceHolder"]
+    #nom = "nomTemporaire"
+    #type = ["typeTemporaire"]
+    #faiblesse = ["faiblesseTemporaire"]
     #hp = 100
     #attaque = 10
     #defence = 15
     #vitesse = 10
     #taille = 5
     #poids = 35
-    #description = ""
+    #description = "descriptionTemporaire"
 
     // Déclaration du constructeur.
     constructor(id,
             nom,
-            type,
+            types,
+            faiblesses,
             hp,
             attaque,
             defence,
@@ -27,7 +29,8 @@ export class Pokemon {
             description){
         this.#id = id
         this.#nom = nom
-        this.#type = type
+        this.#type = types
+        this.#faiblesse = faiblesses
         this.#hp = hp
         this.#attaque = attaque
         this.#defence = defence
@@ -61,6 +64,19 @@ export class Pokemon {
                 "Sol, Vol, Psy, Insecte, Roche, Spectre, Dragon, Tenebres,",
                 "Acier, Fee.") }
             this.#type = type } }
+
+    get faiblesse() {return this.#faiblesse}
+    set faiblesse(faiblesse) {
+        const typeValide = ["Normal","Feu","Eau","Electrik","Plante","Glace",
+            "Combat","Poison","Sol","Vol","Psy","Insecte","Roche","Spectre",
+            "Dragon","Tenebres","Acier","Fee"]
+        for (typeRegarder of type) {
+            if (!(typeValide.includes(type))) {
+            throw TypeError("La faiblesse doit être de type valide, donc soit:",
+                "Normal, Feu, Eau, Electrik, Plante, Glace, Combat, Poison,",
+                "Sol, Vol, Psy, Insecte, Roche, Spectre, Dragon, Tenebres,",
+                "Acier, Fee.") }
+            this.#faiblesse = faiblesse } }
 
     get hp() {return this.#hp}
     set hp(hp) {
@@ -103,6 +119,7 @@ export class Pokemon {
         id          : this.#id,
         nom         : this.#nom,
         type        : this.#type,
+        faiblesse   : this.#faiblesse,
         hp          : this.#hp,
         attaque     : this.#attaque,
         defence     : this.#defence,

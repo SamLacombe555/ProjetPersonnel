@@ -29,7 +29,7 @@
     </nav>
 
     <div class="arrierePlanCentral">
-        <div class="planCentral ps-1 pe-1 pt-3">
+        <div class="planCentral pt-3">
             <h1 class="ms-4">Visiter le Pokedex</h1>
             <p class="ms-4">Ici se trouve tous les pokémons du Pokedex: </p>
 
@@ -38,7 +38,7 @@
                     <div class="row row-cols-2">
                         <div>
                             <h2 id="nomAfficher"></h2>
-                            <img id="imageAfficher" class="border border-success" style="width: 100%;">
+                            <img id="imageAfficher" style="width: 100%;">
                             <p id="pointVieAfficher"></p>
                             <p id="attaqueAfficher"></p>
                             <p id="defenceAfficher"></p>
@@ -47,9 +47,10 @@
                         <div>
                             <h2 id="idAfficher" class="text-end"></h2>
                             <p id="descriptionAfficher"></p>
-                            <div id="typesAfficher" class="mb-3">
-                            <!-- On insère les types choisis.-->
-                            </div>
+                            <p>Types:</p>
+                            <div id="typesAfficher" class="mb-3"></div>
+                            <p>Faiblesse:</p>
+                            <div id="faiblessesAfficher" class="mb-3"></div>
                             <p id="tailleAfficher"></p>
                             <p id="poidsAfficher"></p>
                         </div>
@@ -57,12 +58,13 @@
                 </card>
             </div>
 
-            <form class="ms-4 m-3" id="formulaireRecherche">
-                <input class="form-control" style="width:20%;" id="recherche" type="Search" name="Recherche" placeholder="Rechercher un pokemon">
+            <form class="m3-4 m-3" id="formulaireRecherche">
+                <!-- Ne contient pas de label, fait volontairement. -->
+                <input class="form-control" style="width:30%;" id="recherche" type="Search" name="Recherche" placeholder="Rechercher un pokemon">
             </form>
 
-            <div class="row row-cols-5 ms-4 me-4" id="ChampPokemon">
-                <!--Ici seront insérer les carte.-->
+            <div class="row row-cols-5 ms-3 me-3" id="ChampPokemon">
+                <!-- Ici seront insérer les carte.-->
             </div>
         </div>
 
