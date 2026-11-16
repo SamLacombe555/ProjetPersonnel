@@ -57,7 +57,7 @@
 
 /* Stylisation de l'arrière-plan. */
 .arrierePlanCentral {
-    width: 70%;
+    width: 80%;
     padding-left: 5%;
     padding-right: 5%;
     margin: auto;
@@ -66,6 +66,9 @@
     /*border: 2px dashed blue;*/
 }
 .planCentral {
+    margin-left: 5%;
+    margin-right: 5%;
+    padding-top: 50px;
     padding-left: 5%;
     padding-right: 5%;
     background-color: #363636;
