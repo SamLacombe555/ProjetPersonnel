@@ -18,7 +18,7 @@
 <body>
     <header class="over-top-bar">
         <div>Vann Sovannthanant & Samuel Lacombe</div>
-        <div>26/09/2026 - </div>
+        <div>26/09/2026 - 25/09/2026</div>
     </header>
 
     <nav class = "top-bar">
@@ -32,70 +32,71 @@
         <div class="planCentral ps-1 pe-1 pt-3 row">
             <div class="col-8">
                 <h1>Créer un nouveau Pokémon</h1>
-                <p>Les Pokémons créer ici seront envoyés dans le programme principale et seront affichés
-                    dane le Pokédex.</p>
-                <form id="formulairePokemon">         
-                    <div class="row">
-                        <div class="col-6 p-4">    
-                            <div class="mb-3">
-                                <label class="form-label" for="nom">Nom:</label>
-                                <input class="form-control" id="nom" type="text" name="nom" maxlength="10" required>
-                            </div>
+                <p>Les Pokémons créer ici seront enregistrés dans l'API et seront charger dans le Pokedex lors du chargement de la page.
+                    Les faiblesses seront distribuer selon les types du Pokemon.</p>
+                <!-- Il y'a un col-4 invisible, c'est volontaire pour raison de style. -->
+            </div>
 
-                            <div class="mb-3">
-                                <label class="form-label" for="selectType1">Choisissez un type:</label>
-                                <select class="form-select" id="selectType1" name="selectTypeChoisi1">
-                                    <!-- On insère les types depuis JavaScript. -->
-                                </select>
-                                <button class="btn btn-warning mt-3" type="button" id="AjouterType">Ajouter un autre type</button> 
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label" for="description">Description:</label>
-                                <textarea class="form-control" id="description" name="description" rows="6"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="col-6 p-4" id="containerType">
-                            <label class="form-label" for="pointVie">Point de vie (Min 1 et max 700):</label>
-                            <input class="form-control" style="width: 40%;" type="number" id="pointVie" min="1" max="700" value="100" required>
-
-                            <label class="form-label" for="attaque">Attaque (Min 1 et max 200):</label>
-                            <input class="form-control" style="width: 40%;" type="number" id="attaque" min="1" max="200" value="10" required>
-
-                            <label class="form-label" for="defence">Défence (Min 1 et max 250):</label>
-                            <input class="form-control" style="width: 40%;" type="number" id="defence" min="1" max="250" value="15" required>
-
-                            <label class="form-label" for="vitesse">Vitesse (Min 1 et max 200):</label>
-                            <input class="form-control" style="width: 40%;" type="number" id="vitesse" min="1" max="200" value="10" required>
-
-                            <label class="form-label" for="taille">Taille(Pied) (Min 1 et max 70):</label>
-                            <input class="form-control" style="width: 40%;" type="number" id="taille" min="1" max="70" value="10" step="0.1" required>
-
-                            <label class="form-label" for="poids">Poids(Livre) (Min 1 et max 2200):</label>
-                            <input class="form-control" style="width: 40%;" type="number" id="poids" min="1" max="2200" value="10" step="0.1" required>       
-                        </div>
+            <form class="row" id="formulairePokemon">         
+                <div class="col-4 p-3">    
+                    <div class="mb-3">
+                        <label class="form-label" for="nom">Nom:</label>
+                        <input class="form-control" id="nom" type="text" name="nom" maxlength="10" required>
                     </div>
 
-                    <button class="btn btn-warning" type="submit" id="Validation">Créer</button>
-                </form>
-            </div>
-                
-            <div class="col-4">
-                <h1>Aperçu de la carte</h1>
-                <div class="p-3">
-                    <card class="card border border-primary p-2">
-                        <h2 id="nomApercu">NomApercu</h2>
-                        <p id="pointVieApercu">0</p>
-                        <p id="attaqueApercu">0</p>
-                        <p id="defenceApercu">0</p>
-                        <p id="vitesseApercu">0</p>
-                        <ol>
-                            <!-- On insère les types choisis.-->
-                        </ol>
-                    </card>
+                    <div class="mb-3">
+                        <label class="form-label" for="selectType1">Choisissez un type:</label>
+                        <select class="form-select" id="selectType1" name="selectTypeChoisi1">
+                            <!-- On insère les types depuis JavaScript. -->
+                        </select>
+                        <button class="btn btn-warning mt-3" type="button" id="AjouterType">Ajouter un autre type</button> 
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="description">Description:</label>
+                        <textarea class="form-control" id="description" name="description" rows="6"></textarea>
+                    </div>
                 </div>
-            </div>
+
+                <div class="col-4 p-3" id="containerType">
+                    <label class="form-label" for="pointVie">Point de vie (Min 1 et max 700):</label>
+                    <input class="form-control" style="width: 40%;" type="number" id="pointVie" min="1" max="700" value="100" required>
+
+                    <label class="form-label" for="attaque">Attaque (Min 1 et max 200):</label>
+                    <input class="form-control" style="width: 40%;" type="number" id="attaque" min="1" max="200" value="10" required>
+
+                    <label class="form-label" for="defence">Défence (Min 1 et max 250):</label>
+                    <input class="form-control" style="width: 40%;" type="number" id="defence" min="1" max="250" value="15" required>
+
+                    <label class="form-label" for="vitesse">Vitesse (Min 1 et max 200):</label>
+                    <input class="form-control" style="width: 40%;" type="number" id="vitesse" min="1" max="200" value="10" required>
+
+                    <label class="form-label" for="taille">Taille(m) (Min 0.1 et max 20):</label>
+                    <input class="form-control" style="width: 40%;" type="number" id="taille" min="0.1" max="20" value="10" step="0.1" required>
+
+                    <label class="form-label" for="poids">Poids(kg) (Min 0.1 et max 1000):</label>
+                    <input class="form-control" style="width: 40%;" type="number" id="poids" min="0.1" max="1000" value="10" step="0.1" required>       
+                </div>
+
+                <div class="col-4 p-3">
+                    <card class="card border border-primary p-2">
+                    <h2 id="nomApercu"></h2>
+                    <p id="pointVieApercu"></p>
+                    <p id="attaqueApercu"></p>
+                    <p id="defenceApercu"></p>
+                    <p id="vitesseApercu"></p>
+                    <p id="tailleApercu"></p>
+                    <p id="poidsApercu"></p>
+                    <ol>
+                        <!-- On insère les types choisis.-->
+                    </ol>
+                    </card>
+                    <button class="btn btn-warning" type="submit" id="Validation">Créer</button>
+                </div>
+             
+               
+            </form>
+            
 
         </div>
     </div>

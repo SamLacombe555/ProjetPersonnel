@@ -18,7 +18,7 @@
 <body>
     <header class="over-top-bar">
         <div>Vann Sovannthanant & Samuel Lacombe</div>
-        <div>26/09/2026 - </div>
+        <div>26/09/2026 - 25/09/2026</div>
     </header>
 
     <nav class="top-bar">
@@ -29,45 +29,43 @@
     </nav>
 
     <div class="arrierePlanCentral">
-        <div class="planCentral pt-3">
-            <h1 class="ms-4">Visiter le Pokedex</h1>
-            <p class="ms-4">Ici se trouve tous les pokémons du Pokedex: </p>
+        <div class="planCentral pt-3 ms-4">
+            <h1>Visiter le Pokedex</h1>
+            <p>Ici se trouve tous les pokémons du Pokedex, ça contient les 30 premiers Pokemons: </p>
 
-            <div class="carteAfficher" id="carteAfficher">
-                <card class="card border border-dark pe-5 ps-5 pt-3 pb-3" style="width: 70%; margin: auto;">
-                    <div class="row row-cols-2">
-                        <div>
-                            <h2 id="nomAfficher"></h2>
-                            <img id="imageAfficher" style="width: 100%;">
-                            <p id="pointVieAfficher"></p>
-                            <p id="attaqueAfficher"></p>
-                            <p id="defenceAfficher"></p>
-                            <p id="vitesseAfficher"></p>
-                        </div>
-                        <div>
-                            <h2 id="idAfficher" class="text-end"></h2>
-                            <p id="descriptionAfficher"></p>
-                            <div class="containerTypes border-5 border-top border-end border-warning mb-2 p-2">
-                                <p>Types:</p>
-                                <div id="typesAfficher"></div>
-                            </div>
-                            <div class="containerFaiblesses border-5 border-top border-end border-danger mb-2 p-2">
-                                <p>Faiblesse:</p>
-                                <div id="faiblessesAfficher"></div>
-                            </div>
-                            <p id="tailleAfficher"></p>
-                            <p id="poidsAfficher"></p>
-                        </div>
+            <div class="carteAfficher p-4" id="carteAfficher">
+                <div class="row row-cols-2">
+                    <div>
+                        <h2 id="nomAfficher"></h2>
+                        <img id="imageAfficher" class="mb-3" style="width: 100%;">
+                        <p id="pointVieAfficher"></p>
+                        <p id="attaqueAfficher"></p>
+                        <p id="defenceAfficher"></p>
+                        <p id="vitesseAfficher"></p>
                     </div>
-                </card>
+                    <div>
+                        <h2 id="idAfficher" class="text-end"></h2>
+                        <p id="descriptionAfficher"></p>
+                        <div class="containerTypes border-5 border-top border-end border-warning mb-2 p-2">
+                            <p>Types:</p>
+                            <div id="typesAfficher"></div>
+                        </div>
+                        <div class="containerFaiblesses border-5 border-top border-end border-danger mb-2 p-2">
+                            <p>Faiblesse:</p>
+                            <div id="faiblessesAfficher"></div>
+                        </div>
+                        <p id="tailleAfficher"></p>
+                        <p id="poidsAfficher"></p>
+                    </div>
+                </div>
             </div>
 
-            <form class="m3-4 m-3" id="formulaireRecherche">
+            <form class="mt-3 mb-3" id="formulaireRecherche">
                 <!-- Ne contient pas de label, fait volontairement. -->
                 <input class="form-control" style="width:30%;" id="recherche" type="Search" name="Recherche" placeholder="Rechercher un pokemon">
             </form>
 
-            <div class="row row-cols-5 ms-3 me-3" id="ChampPokemon">
+            <div class="row row-cols-5" id="ChampPokemon">
                 <!-- Ici seront insérer les carte.-->
             </div>
         </div>

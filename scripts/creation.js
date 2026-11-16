@@ -49,19 +49,25 @@ PreparerListeDeroulanteType(listeSelectType);
 function mettreAjourApercu () {
     // Met à jour l'apercu de la carte après chaque 'input' des informations.
     document.getElementById("nomApercu").textContent =
-    document.getElementById("nom").value || "nomApercu";
+    document.getElementById("nom").value || "Apercu";
 
-    document.getElementById("pointVieApercu").textContent = "Point de vie : " +
+    document.getElementById("pointVieApercu").textContent = "Point de vie: "+
     document.getElementById("pointVie").value || 0;
 
-    document.getElementById("attaqueApercu").textContent = "Attaque : " +
+    document.getElementById("attaqueApercu").textContent = "Point d'attaque: "+
     document.getElementById("attaque").value || 0;
 
-    document.getElementById("defenceApercu").textContent = "Défence : " +
+    document.getElementById("defenceApercu").textContent = "Point de défense: "+
     document.getElementById("defence").value || 0;
 
-    document.getElementById("vitesseApercu").textContent = "Vitesse : " +
+    document.getElementById("vitesseApercu").textContent = "Point de vitesse: "+
     document.getElementById("vitesse").value || 0;
+
+    document.getElementById("tailleApercu").textContent = "Taille: "+
+    document.getElementById("taille").value || 0;
+
+    document.getElementById("poidsApercu").textContent = "Poids: "+
+    document.getElementById("poids").value || 0;
 
     // Met à jour l'aperçu pour la liste de type.
     const listeType = document.querySelector("card ol");
