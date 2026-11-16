@@ -39,7 +39,7 @@
 
             <form class="row" id="formulairePokemon">         
                 <div class="col-4 p-3">    
-                    <div class="mb-3">
+                    <div>
                         <label class="form-label" for="nom">Nom:</label>
                         <input class="form-control" id="nom" type="text" name="nom" maxlength="10" required>
                     </div>
@@ -54,7 +54,7 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="description">Description:</label>
-                        <textarea class="form-control" id="description" name="description" rows="6"></textarea>
+                        <textarea class="form-control" id="description" name="description" rows="5"></textarea>
                     </div>
                 </div>
 
@@ -79,19 +79,17 @@
                 </div>
 
                 <div class="col-4 p-3">
-                    <card class="card border border-primary p-2">
-                    <h2 id="nomApercu"></h2>
-                    <p id="pointVieApercu"></p>
-                    <p id="attaqueApercu"></p>
-                    <p id="defenceApercu"></p>
-                    <p id="vitesseApercu"></p>
-                    <p id="tailleApercu"></p>
-                    <p id="poidsApercu"></p>
-                    <ol>
-                        <!-- On insère les types choisis.-->
-                    </ol>
-                    </card>
-                    <button class="btn btn-warning" type="submit" id="Validation">Créer</button>
+                    <div class="carteAfficher" style="display: block;">
+                        <h2 id="nomApercu"></h2>
+                        <p id="pointVieApercu"></p>
+                        <p id="attaqueApercu"></p>
+                        <p id="defenceApercu"></p>
+                        <p id="vitesseApercu"></p>
+                        <p id="tailleApercu"></p>
+                        <p id="poidsApercu"></p>
+                        <div id="typesApercu"></div>
+                    </div>
+                    <button class="btn btn-warning mt-4" type="submit" id="Validation">Créer</button>
                 </div>
              
                

@@ -9,6 +9,39 @@ const boutonAjoutType = document.querySelector('#AjouterType');
 const typeValide = ["Normal","Feu","Eau","Electrik","Plante","Glace",
             "Combat","Poison","Sol","Vol","Psy","Insecte","Roche",
             "Spectre","Dragon","Tenebres","Acier","Fee"];
+const couleursTypes = {
+    // Hésite pas à changer des couleurs.
+    // Acier et Electrik sont difficiles à lire.
+    normal: "#78774E",
+    feu:    "#BB580F",
+    eau:    "#326DEB",
+    electrik:"#8C7205",
+    plante: "#4A8229",
+    glace:  "#2F817D",
+    combat: "#C22E28",
+    poison: "#A33EA1",
+    sol:    "#906F1B",
+    vol:    "#7F58ED",
+    psy:    "#E7084C",
+    insecte:"#6E7A11",
+    roche:  "#837427",
+    spectre:"#735797",
+    dragon: "#6F35FC",
+    tenebres:"#705746",
+    acier:  "#71719E",
+    fee:    "#C14884"
+};
+
+function creerBadgesType(nomType) {
+    // Créer des badges pour les types.
+    const badge = document.createElement("span");
+    const type = nomType.toLowerCase();
+    badge.textContent = nomType;
+    badge.classList = "badge me-1 mb-1";
+    badge.style.color = "white";
+    badge.style.backgroundColor = couleursTypes[type];
+    return badge
+}
 
 function PreparerListeDeroulanteType(listeDeroulante) {
     // Remplis une 'select' élement avec 'typeValide'.
@@ -69,14 +102,10 @@ function mettreAjourApercu () {
     document.getElementById("poidsApercu").textContent = "Poids: "+
     document.getElementById("poids").value || 0;
 
-    // Met à jour l'aperçu pour la liste de type.
-    const listeType = document.querySelector("card ol");
-    listeType.innerHTML = "";   // Vide les listes de l'aperçu.
-    const containerType = document.querySelectorAll("#containerType select")
-    containerType.forEach(select => {
-        const liste = document.createElement("li");
-        liste.textContent = select.value;
-        listeType.append(liste); } )
+    document.getElementById("typesApercu").replaceChildren();
+    for (let i=1; i<=compteType; i++) {
+        const typeChoisi = document.querySelector(`#selectType${i}`).value;
+        document.getElementById("typesApercu").append(creerBadgesType(typeChoisi)); }
 }
 
 formulaire.addEventListener("input", mettreAjourApercu);

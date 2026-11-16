@@ -8,7 +8,7 @@ const formulaireRecherche = document.getElementById("formulaireRecherche");
 const champRecherche = document.getElementById("recherche");
 const couleursTypes = {
     // Hésite pas à changer des couleurs.
-    // Acier et Electrik sont un peur difficile à lire.
+    // Acier et Electrik sont difficiles à lire.
     normal: "#78774E",
     feu:    "#BB580F",
     eau:    "#326DEB",
