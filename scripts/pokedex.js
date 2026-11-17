@@ -68,6 +68,7 @@ function creerCarte(pokemon) {
     else if (imageChoisi == 3) {image.src = "./multimedia/PikachuAhhShadow.png";}
     else if (imageChoisi == 4) {image.src = "./multimedia/RayquazaAhhShadow.png";}
     image.classList = 'card-img-top';
+    image.alt = `Image de ${pokemon.nom}`;
 
     carte.addEventListener("click", () => {afficherInfoPokemonChoisi(pokemon, image.src)})
     carte.append(nom, types, image);
@@ -94,6 +95,8 @@ chargerPokemonAPI();
 
 
 // +=====+ Section pour l'aperçu des informations. +=====+
+
+
 function afficherInfoPokemonChoisi (pokemon, imagesrc) {
     // Affiche les informations selon la carte sélectionner.
     document.documentElement.scrollTop = 0;
@@ -101,6 +104,7 @@ function afficherInfoPokemonChoisi (pokemon, imagesrc) {
     document.getElementById("nomAfficher").textContent = pokemon.nom;
     document.getElementById("idAfficher").textContent = `ID: ${pokemon.id}`;
     document.getElementById("imageAfficher").src = imagesrc;
+    document.getElementById("imageAfficher").alt = `Image agrandi de ${pokemon.nom}`;
     document.getElementById("pointVieAfficher").textContent = `Point de vie: ${pokemon.hp}`;
     document.getElementById("attaqueAfficher").textContent = `Point d'attaque: ${pokemon.attaque}`;
     document.getElementById("defenceAfficher").textContent = `Point de défense: ${pokemon.defence}`
@@ -115,4 +119,19 @@ function afficherInfoPokemonChoisi (pokemon, imagesrc) {
     for (const faiblesse of pokemon.faiblesses) {listeFaiblesse.append(creerBadgesType(faiblesse)); }
     document.getElementById("tailleAfficher").textContent = `Taille: ${pokemon.taille} m`;
     document.getElementById("poidsAfficher").textContent = `Poids: ${pokemon.poids} kg`;
+
+    const btnSuppresion = document.getElementById("btnSuppression");
+    btnSuppresion.addEventListener("click", effacerPokemonChoisi);
 }
+
+function effacerPokemonChoisi () {
+    // Efface le pokemon hors des pokemons de l'API.
+    const modal = document.getElementById("modal");
+    modal.classList.add("show");
+    console.log("Arriver ici");
+}
+
+function modalSupression() {
+
+}
+

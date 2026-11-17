@@ -41,6 +41,7 @@
                         <p id="attaqueAfficher"></p>
                         <p id="defenceAfficher"></p>
                         <p id="vitesseAfficher"></p>
+                        <button id="btnSuppression" type="button" class="btn btn-danger">Effacer le pokemon</button>
                     </div>
                     <div>
                         <h2 id="idAfficher" class="text-end"></h2>
@@ -67,16 +68,22 @@
                 </div>
             </div>
 
-            <form class="mt-3 mb-3" id="formulaireRecherche">
-                <!-- Ne contient pas de label, fait volontairement. -->
-                <input class="form-control" style="width:30%;" id="recherche" type="Search" name="Recherche" placeholder="Rechercher un pokemon">
+            <form class="hstack mt-3 mb-3" role="search" id="formulaireRecherche">
+                <input class="form-control" style="width:30%;" id="recherche" type="search" aria-label="Recherche" placeholder="Rechercher un pokemon">
             </form>
 
-            <div class="row row-cols-5" id="ChampPokemon">
-                <!-- Ici seront insérer les carte.-->
-            </div>
-        </div>
+            <div class="row row-cols-5" id="ChampPokemon"> <!-- Ici seront insérer les carte.--> </div>
 
+        </div>
+    </div>
+    
+    <div class="affichageModal" id="modal">
+        <div class="boiteModal">
+            <h3>Supprimer</h3>
+            <p>Voulez vous vraiment supprimer:</p>
+            <button id="btnAnnuler">Annuler</button>
+            <button id="btnConfirmer">Confirmer</button>
+        </div>
     </div>
 
 </body>

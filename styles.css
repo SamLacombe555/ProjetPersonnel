@@ -1,14 +1,12 @@
 
-/* Stylisation du header. */
+/* +=====+ Stylisation du header. +=====+ */
 .over-top-bar {
     height: 50px;
     padding-left: 10%;
     padding-right: 10%;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
     color: white;
     background-color: #363636;
     border-bottom: 5px solid #333333;
@@ -19,14 +17,11 @@
     padding-left: 10%;
     padding-right: 10%;
     display: flex;
-
     align-items: center;
     gap: 5%;
-
     position: sticky;
     z-index: 1000;  /*Met par dessus les cartes.*/
     top: 0;
-    
     color: white;
     background-color: #363636;
     border-bottom: 5px solid #232023;
@@ -34,7 +29,7 @@
     /*border: 2px dashed orangered;*/
 }
 
-/* Stylisation pour les navigations. */
+/* +=====+ Stylisation pour les navigations. +=====+ */
 .index:hover {
     border-top: 2px solid #5FD068;
     border-bottom: 2px solid #5FD068;
@@ -56,7 +51,7 @@
     border-radius: 30px 30px 30px 30px;
 }
 
-/* Stylisation de l'arrière-plan. */
+/* +=====+ Stylisation de l'arrière-plan. +=====+ */
 .arrierePlanCentral {
     width: 80%;
     padding-left: 5%;
@@ -76,14 +71,14 @@
     border-radius: 0px 0px 20px 20px;
 }
 
-/* Stylisation de la grille et des cartes. */
+/* +=====+ Stylisation de la grille et des cartes. +=====+ */
 .carteAfficher {
     padding: 5%;
     display: none;
     font-family: Oswald, sans-serif;
     margin: auto;
     border-radius: 0px 30px 0px 30px;
-    border: 2px solid #5FD068;
+    border: 10px solid #303030;
 }
 .containerTypes {
     background-color: #303030;
@@ -110,8 +105,7 @@ img {
     background-color: #303030;
 }
 
-
-/* Stylisation des balises de corps. */
+/* +=====+ Stylisation des balises de corps. +=====+ */
 body {
     color: #eceef2;
     font-family: Verdana;
@@ -126,4 +120,26 @@ body {
 a, a:visited, a:hover, a:active {
     color: white;
     font-family: Verdana;
+}
+
+/* +=====+ Stylisation du modal. +=====+ */
+.affichageModal {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.affichageModal.show {
+    display: flex;
+}
+.boiteModal {
+    display: block;
+    margin: auto auto;
+    padding: 5%;
+    max-width: 30%;
+    background-color: #363636;
+    border: 10px solid #dc3545;
+    border-radius: 0px 0px 0px 30px;
 }
