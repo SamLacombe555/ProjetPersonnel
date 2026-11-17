@@ -1,6 +1,5 @@
 
 // +=====+ Section de Chargement des Pokemons. +=====+
-let pokemonInspecter = "";
 let tousLesPokemons = [];
 let tousLesTypes = [];
 const champPokemon = document.getElementById("ChampPokemon");
@@ -111,6 +110,7 @@ function afficherInfoPokemonChoisi (pokemon, imagesrc) {
     document.getElementById("vitesseAfficher").textContent = `Point de vitesse: ${pokemon.vitesse}`;
     document.getElementById("descriptionAfficher").textContent = pokemon.description;
 
+    // Pour les informations concernant les types du pokemon.
     const listeTypes = document.getElementById("typesAfficher");
     const listeFaiblesse = document.getElementById("faiblessesAfficher");
     listeTypes.replaceChildren();
@@ -120,18 +120,30 @@ function afficherInfoPokemonChoisi (pokemon, imagesrc) {
     document.getElementById("tailleAfficher").textContent = `Taille: ${pokemon.taille} m`;
     document.getElementById("poidsAfficher").textContent = `Poids: ${pokemon.poids} kg`;
 
+    // TODO: Semble ajouter un id de trop à chaque clique.
     const btnSuppresion = document.getElementById("btnSuppression");
-    btnSuppresion.addEventListener("click", effacerPokemonChoisi);
+    btnSuppresion.addEventListener("click", modalSuppression(pokemon.id));
 }
 
-function effacerPokemonChoisi () {
-    // Efface le pokemon hors des pokemons de l'API.
+function modalSuppression(IDpokemonInspecter) {
+     // TODO: Efface le pokemon hors des pokemons de l'API quand confirmer.
     const modal = document.getElementById("modal");
+    const btnAnnuler = document.getElementById("btnAnnuler");
+    const btnConfirmer = document.getElementById("btnConfirmer");
+
     modal.classList.add("show");
-    console.log("Arriver ici");
+    btnAnnuler.addEventListener("click", annulerSuppression);
+    btnConfirmer.addEventListener("click", confirmerSuppression);
+
+    function annulerSuppression () {modal.classList.remove("show");}
+    function confirmerSuppression () {
+        modal.classList.remove("show");
+        document.getElementById("carteAfficher").style.display = "none";
+        for (const pokemon of tousLesPokemons) {
+            if (IDpokemonInspecter == pokemon.id) {
+                // Retounr trop ID.
+                console.log(IDpokemonInspecter);
+            }     
+        }
+    }
 }
-
-function modalSupression() {
-
-}
-
