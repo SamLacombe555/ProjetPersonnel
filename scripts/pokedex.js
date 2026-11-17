@@ -97,7 +97,7 @@ chargerPokemonAPI();
 
 
 function afficherInfoPokemonChoisi (pokemon, imagesrc) {
-    // Affiche les informations selon la carte sélectionner.
+    // 1er colonnes affiche les informations selon la carte sélectionner.
     document.documentElement.scrollTop = 0;
     document.getElementById("carteAfficher").style.display = "block";
     document.getElementById("nomAfficher").textContent = pokemon.nom;
@@ -108,9 +108,9 @@ function afficherInfoPokemonChoisi (pokemon, imagesrc) {
     document.getElementById("attaqueAfficher").textContent = `Point d'attaque: ${pokemon.attaque}`;
     document.getElementById("defenceAfficher").textContent = `Point de défense: ${pokemon.defence}`
     document.getElementById("vitesseAfficher").textContent = `Point de vitesse: ${pokemon.vitesse}`;
+    
+    // 2ème colonne, pour les informations concernant les types du pokemon.
     document.getElementById("descriptionAfficher").textContent = pokemon.description;
-
-    // Pour les informations concernant les types du pokemon.
     const listeTypes = document.getElementById("typesAfficher");
     const listeFaiblesse = document.getElementById("faiblessesAfficher");
     listeTypes.replaceChildren();
@@ -121,8 +121,8 @@ function afficherInfoPokemonChoisi (pokemon, imagesrc) {
     document.getElementById("poidsAfficher").textContent = `Poids: ${pokemon.poids} kg`;
 
     // TODO: Semble ajouter un id de trop à chaque clique.
-    const btnSuppresion = document.getElementById("btnSuppression");
-    btnSuppresion.addEventListener("click", modalSuppression(pokemon.id));
+    const btnSuppresion = document.querySelector("#btnSuppression");
+    btnSuppresion.addEventListener("click", () => {modalSuppression(pokemon.id)});
 }
 
 function modalSuppression(IDpokemonInspecter) {
