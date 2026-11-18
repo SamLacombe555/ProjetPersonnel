@@ -10,6 +10,7 @@ export class Pokemon {
     #nom = ""
     #types = []
     #faiblesses = []
+    #resistances = []
     #hp = 100
     #attaque = 10
     #defence = 15
@@ -28,7 +29,9 @@ export class Pokemon {
             vitesse,
             taille,
             poids,
-            description){
+            description,
+            faiblesses,
+            resistances){
         this.#id = id
         this.#nom = nom
         this.#types = types
@@ -39,6 +42,8 @@ export class Pokemon {
         this.#taille = taille
         this.#poids = poids
         this.#description = description
+        this.#faiblesses = faiblesses
+        this.#resistances = resistances
     }
 
     // Déclarration des getters et setters.
@@ -68,6 +73,14 @@ export class Pokemon {
             if (!typeValide.includes(faiblesse)) {
                 throw new TypeError("Faiblesses contient un type invalide")}} 
         this.#faiblesses = faiblesses }
+
+    get resistance() {return this.#resistances}
+    set resistance(resistances) {
+        if (!Array.isArray(resistances)) {throw new TypeError("Résistances doit être un array.")}
+        for (const resistance of resistances) {
+            if (!typeValide.includes(resistance)) {
+                throw new TypeError("Résistances contient un type invalide")}}
+        this.#resistances = resistances }
 
     get hp() {return this.#hp}
     set hp(hp) {
@@ -111,6 +124,7 @@ export class Pokemon {
         nom         : this.#nom,
         types       : this.#types,
         faiblesses  : this.#faiblesses,
+        resistances  : this.#resistances,
         hp          : this.#hp,
         attaque     : this.#attaque,
         defence     : this.#defence,
