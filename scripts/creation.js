@@ -32,6 +32,59 @@ const couleursTypes = {
     fee:    "#C14884"
 };
 
+function combinerTypes(type1, type2) {
+
+    //const concatArr = firstArr.concat(secondArr)
+    // const result = concatArr.filter((item, idx) => concatArr.indexOf(item) === idx)
+    // Fonction permettant de combiner deux array en un et d'enlever les doubles
+    // Source : https://gist.github.com/frivolta/4c94fe32b174a8f915f7324f826ee4c8#file-secondsolution-js
+    let type3 = {
+        faiblesses: type1.faiblesses.concat(type2.faiblesses),
+        resistances: type1.resistances.concat(type2.resistances),
+        immune: type1.immune.concat(type2.immune)
+    };
+
+    // Enlever les doubles
+    type3.faiblesses = type3.faiblesses.filter(
+        (item, idx, arr) => arr.indexOf(item) === idx
+    );
+
+    type3.resistances = type3.resistances.filter(
+        (item, idx, arr) => arr.indexOf(item) === idx
+    );
+
+    type3.immune = type3.immune.filter(
+        (item, idx, arr) => arr.indexOf(item) === idx
+    );
+
+    // Annuler les resistances et faiblesses
+    for (const f of type3.faiblesses) {
+        if (type3.resistances.includes(f)) {
+            // Source pour filtrer array : https://stackoverflow.com/questions/3954438/how-to-remove-item-from-array-by-value
+            type3.faiblesses = type3.faiblesses.filter(
+                item => item !== f
+            );
+
+            type3.resistances = type3.resistances.filter(
+                item => item !== f
+            );
+        }
+    }
+
+    // Immunité annule la resistance et faiblesse
+    for (const i of type3.immune) {
+        type3.faiblesses = type3.faiblesses.filter(
+            item => item !== i
+        );
+
+        type3.resistances = type3.resistances.filter(
+            item => item !== i
+        );
+    }
+
+    return type3;
+}
+
 function creerBadgesType(nomType) {
     // Créer des badges pour les types.
     const badge = document.createElement("span");
@@ -123,6 +176,18 @@ async function compterPokemonIdAPI() {
     compteurPokemonId = tousLesPokemons.length;
 }
 
+async function creerTypesAPI() {
+    const reponse = await fetch("https://6af2194542c6561ced390228.mockapi.io/Types");
+
+    if (!reponse.ok) {
+        throw new Error(`Erreur: ${reponse.status}`);
+    }
+
+    return await reponse.json();
+}
+
+const tousLesTypes = await creerTypesAPI()
+
 async function creationPokemon(event) {
     // Créer un pokemon avec le formulaire et l'envoie dans 'sessionstorage'.
     event.preventDefault();
@@ -134,6 +199,7 @@ async function creationPokemon(event) {
     for (let i=1; i<=compteType; i++) {
         const typeChoisi = document.querySelector(`#selectType${i}`).value;
         type.push(typeChoisi); }
+    // const faiblesses = combinerTypes();
     // Convertie toutes les entrées chiffre en 'number'.
     const pointVie  = Number(document.getElementById("pointVie").value);
     const attaque   = Number(document.getElementById("attaque").value);
@@ -143,7 +209,7 @@ async function creationPokemon(event) {
     const poids     = Number(document.getElementById("poids").value);
 
     const description = document.getElementById("description").value;
-    const pokemon = new Pokemon(compteurPokemonId, nom, type, pointVie, attaque, defence,
+    const pokemon = new Pokemon(compteurPokemonId, nom, type, faiblesses, resistances, pointVie, attaque, defence,
         vitesse, taille, poids, description);
     
     // Envoye le pokemon crée dans l'API.
@@ -161,59 +227,6 @@ async function creationPokemon(event) {
     // Cette partie sera remplacer pour l'API.
     // sessionStorage.setItem("CompteurPokemon", compteurPokemonId);
     // sessionStorage.setItem(`Pokemon${compteurPokemonId}`, JSON.stringify(pokemon));
-}
-
-function combinerTypes(type1, type2) {
-
-    //const concatArr = firstArr.concat(secondArr)
-    // const result = concatArr.filter((item, idx) => concatArr.indexOf(item) === idx)
-    // Fonction permettant de combiner deux array en un et d'enlever les doubles
-    // Source : https://gist.github.com/frivolta/4c94fe32b174a8f915f7324f826ee4c8#file-secondsolution-js
-    let type3 = {
-        faiblesse: type1.faiblesse.concat(type2.faiblesse),
-        resistance: type1.resistance.concat(type2.resistance),
-        immune: type1.immune.concat(type2.immune)
-    };
-
-    // Enlever les doubles
-    type3.faiblesse = type3.faiblesse.filter(
-        (item, idx, arr) => arr.indexOf(item) === idx
-    );
-
-    type3.resistance = type3.resistance.filter(
-        (item, idx, arr) => arr.indexOf(item) === idx
-    );
-
-    type3.immune = type3.immune.filter(
-        (item, idx, arr) => arr.indexOf(item) === idx
-    );
-
-    // Annuler les resistances et faiblesses
-    for (const f of type3.faiblesse) {
-        if (type3.resistance.includes(f)) {
-            // Source pour filtrer array : https://stackoverflow.com/questions/3954438/how-to-remove-item-from-array-by-value
-            type3.faiblesse = type3.faiblesse.filter(
-                item => item !== f
-            );
-
-            type3.resistance = type3.resistance.filter(
-                item => item !== f
-            );
-        }
-    }
-
-    // Immunité annule la resistance et faiblesse
-    for (const i of type3.immune) {
-        type3.faiblesse = type3.faiblesse.filter(
-            item => item !== i
-        );
-
-        type3.resistance = type3.resistance.filter(
-            item => item !== i
-        );
-    }
-
-    return type3;
 }
 
 formulaire.addEventListener("submit", creationPokemon)

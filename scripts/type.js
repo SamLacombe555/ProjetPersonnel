@@ -44,7 +44,7 @@ export class Type {
             nom: this.#nom,
             faiblesses: this.#faiblesses,
             resistances: this.#resistances,
-            immune: this.#immune,
+            immune: this.#immune
         }
     }
 }
