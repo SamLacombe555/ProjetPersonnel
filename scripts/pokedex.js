@@ -3,11 +3,12 @@
 let tousLesPokemons = [];
 let tousLesTypes = [];
 const champPokemon = document.getElementById("ChampPokemon");
+const quantitePokemon = document.getElementById("quantitePokemon");
 const formulaireRecherche = document.getElementById("formulaireRecherche");
 const champRecherche = document.getElementById("recherche");
 const couleursTypes = {
     // Hésite pas à changer des couleurs.
-    // Acier et Electrik sont difficiles à lire.
+    // Les couleurs respectent la règke de constrainte.
     normal: "#78774E",
     feu:    "#BB580F",
     eau:    "#326DEB",
@@ -34,6 +35,7 @@ async function chargerPokemonAPI() {
     if (!reponse.ok) {throw new Error(`Erreur: ${reponse.status}`); } 
     tousLesPokemons = await reponse.json();
     afficherPokemons(tousLesPokemons);
+    quantitePokemon.textContent = `Ici se trouve tous les pokémons du Pokedex, il y'a ${tousLesPokemons.length} Pokemons:`;
 }
 
 function creerBadgesType(nomType) {
@@ -77,6 +79,8 @@ function creerCarte(pokemon) {
 function rechercherPokemon(motCherche, listPokemons) {
     // Permet à la barre de recherche d'afficher les pokemons selon Regex.
     const regex = new RegExp(motCherche, "i");
+    // J'ai appris qu'on peut faire chaque element d'un loop passé dans une fonction avec '.filter()'.
+    // https://www.w3schools.com/jsref/jsref_filter.asp
     return listPokemons.filter(pokemon => regex.test(pokemon.nom));
 }
 
@@ -96,6 +100,8 @@ chargerPokemonAPI();
 // +=====+ Section pour l'aperçu des informations. +=====+
 function afficherInfoPokemonChoisi (pokemon, imagesrc) {
     // 1er colonnes affiche les informations selon la carte sélectionner.
+    // 'document.documentElement.scrollTop = 0' permet à la page de retourner en haut.
+    // https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
     document.documentElement.scrollTop = 0;
     document.getElementById("carteAfficher").style.display = "block";
     document.getElementById("nomAfficher").textContent = pokemon.nom;
@@ -118,6 +124,9 @@ function afficherInfoPokemonChoisi (pokemon, imagesrc) {
     document.getElementById("tailleAfficher").textContent = `Taille: ${pokemon.taille} m`;
     document.getElementById("poidsAfficher").textContent = `Poids: ${pokemon.poids} kg`;
 
+    // '.onclick' est un '.addEventListener', la différence c'est que utilisant '.onclick' à la place de l'autre.
+    // Ça empêche de '.addEventListener' à chaque fois qu'on 'afficherInfoPokemonChoisi'.
+    // https://www.w3schools.com/jsref/event_onclick.asp
     document.getElementById("btnSuppression").onclick = () => {modalSuppression(pokemon)};
 }
 
@@ -128,7 +137,6 @@ function modalSuppression(pokemonInspecter) {
     messageSupression.textContent = `Voulez vous vraiment supprimer: ${pokemonInspecter.nom}?`
     modal.classList.add("show");
     
-
     document.getElementById("btnAnnuler").onclick =()=> {
         modal.classList.remove("show");}
 
@@ -137,7 +145,7 @@ function modalSuppression(pokemonInspecter) {
         document.getElementById("carteAfficher").style.display = "none";
         fetch(`https://6af2194542c6561ced390228.mockapi.io/Pokemon/${pokemonInspecter.id}`,
             { method: "DELETE"});
-        // '.filter' sert à analyser un array avec une fonction. Dance ce cas, elever 'IDpokemonInspecter'.
+        // '.filter' sert à analyser un array avec une fonction. Dance ce cas, enlever 'IDpokemonInspecter'.
         tousLesPokemons = tousLesPokemons.filter(pokemon => pokemon.id != pokemonInspecter.id);
         afficherPokemons(tousLesPokemons);
     }

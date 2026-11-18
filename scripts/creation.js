@@ -135,12 +135,12 @@ async function creationPokemon(event) {
         const typeChoisi = document.querySelector(`#selectType${i}`).value;
         type.push(typeChoisi); }
     // Convertie toutes les entrées chiffre en 'number'.
-    const pointVie = Number(document.getElementById("pointVie").value);
-    const attaque = Number(document.getElementById("attaque").value);
-    const defence = Number(document.getElementById("defence").value);
-    const vitesse = Number(document.getElementById("vitesse").value);
-    const taille = Number(document.getElementById("taille").value);
-    const poids = Number(document.getElementById("poids").value);
+    const pointVie  = Number(document.getElementById("pointVie").value);
+    const attaque   = Number(document.getElementById("attaque").value);
+    const defence   = Number(document.getElementById("defence").value);
+    const vitesse   = Number(document.getElementById("vitesse").value);
+    const taille    = Number(document.getElementById("taille").value);
+    const poids     = Number(document.getElementById("poids").value);
 
     const description = document.getElementById("description").value;
     const pokemon = new Pokemon(compteurPokemonId, nom, type, pointVie, attaque, defence,
@@ -153,9 +153,11 @@ async function creationPokemon(event) {
         body: JSON.stringify(pokemon)
     })
     if (!reponse.ok) {throw new Error(`Erreur: ${reponse.status}`)}
-    const Verification = await reponse.json();
-    console.log(Verification)
+    // const Verification = await reponse.json();
+    // console.log(Verification)
 
+    document.getElementById("carteSucces").style.display = "flex";
+    document.getElementById("messageSucces").textContent = `${pokemon.nom}, a été crée avec succès et son id est ${pokemon.id}.`
     // Cette partie sera remplacer pour l'API.
     // sessionStorage.setItem("CompteurPokemon", compteurPokemonId);
     // sessionStorage.setItem(`Pokemon${compteurPokemonId}`, JSON.stringify(pokemon));

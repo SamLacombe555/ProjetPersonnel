@@ -33,7 +33,7 @@
                 <h1>Créer un nouveau Pokémon</h1>
                 <p>Les Pokémons créer ici seront enregistrés dans l'API et seront charger dans le Pokedex lors du chargement de la page.
                     Les faiblesses et les resistances seront distribuer selon les types du Pokemon.</p>
-                <!-- Il y'a un col-4 invisible, c'est volontaire pour raison de style. -->
+                <!-- Il y'a un 'col-4' invisible, c'est volontaire. Question de style. -->
             </div>
 
             <form class="row" id="formulairePokemon">         
@@ -53,7 +53,7 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="description">Description:</label>
-                        <textarea class="form-control" id="description" name="description" rows="5"></textarea>
+                        <textarea class="form-control" id="description" name="description" rows="6"></textarea>
                     </div>
                 </div>
 
@@ -90,12 +90,15 @@
                     </div>
                     <button class="btn btn-warning mt-4" type="submit" id="Validation">Créer</button>
                 </div>
-             
-               
             </form>
-            
+
+            <div class="carteSucces row" id="carteSucces">
+                <img class="col-2" src="./multimedia/PikachuAhhShadow.png" alt="image de creation succès" style="background: transparent;">
+                <p class="col-10" id="messageSucces"></p>
+            </div>
 
         </div>
+        
     </div>
     
 </body>

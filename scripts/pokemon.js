@@ -43,6 +43,8 @@ export class Pokemon {
 
     // Déclarration des getters et setters.
     // 'get' offre la permission de lire et 'set' donne la permission d'écrire.
+    // J'ai pu véridier les types des paramètres en me référant à ce site:
+    // https://www.index.dev/blog/javascript-type-checking-with-examples
     get id() {return this.#id}
     set id(id) {this.#id = id}
 

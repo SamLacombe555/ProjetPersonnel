@@ -30,13 +30,14 @@
     <div class="arrierePlanCentral">
         <div class="planCentral">
             <h1>Visiter le Pokedex</h1>
-            <p>Ici se trouve tous les pokémons du Pokedex, elle contient 30 Pokemons: </p>
+            <p id="quantitePokemon">Ici se trouve tous les pokémons du Pokedex</p>
 
             <div class="carteAfficher ms-5 me-5" id="carteAfficher">
                 <div class="row row-cols-2">
                     <div>
-                        <h2 id="nomAfficher"></h2>
-                        <img id="imageAfficher" class="mb-3" style="width: 100%;">
+                        <!-- N'affiche rien, mais empêche une erreur de WAVE. -->
+                        <h2 id="nomAfficher">NomPokemon</h2> 
+                        <img id="imageAfficher" alt="imagePokemonInspecter" class="mb-3" style="width: 100%;">
                         <p id="pointVieAfficher"></p>
                         <p id="attaqueAfficher"></p>
                         <p id="defenceAfficher"></p>
@@ -44,7 +45,8 @@
                         <button id="btnSuppression" type="button" class="btn btn-danger">Suprimer le pokemon</button>
                     </div>
                     <div>
-                        <h2 id="idAfficher" class="text-end"></h2>
+                        <!-- N'affiche rien, mais empêche une erreur de WAVE. -->
+                        <h2 id="idAfficher" class="text-end">ID</h2>
                         <p id="descriptionAfficher"></p>
 
                         <div class="containerTypes border-5 border-top border-end border-warning mb-2 p-2">
