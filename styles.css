@@ -54,6 +54,8 @@
 /* +=====+ Stylisation de l'arrière-plan. +=====+ */
 .arrierePlanCentral {
     width: 80%;
+    min-width: 1100px;
+    max-width: 1400px;
     padding-left: 5%;
     padding-right: 5%;
     margin: auto;
