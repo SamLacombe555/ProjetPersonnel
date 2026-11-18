@@ -94,8 +94,6 @@ chargerPokemonAPI();
 
 
 // +=====+ Section pour l'aperçu des informations. +=====+
-
-
 function afficherInfoPokemonChoisi (pokemon, imagesrc) {
     // 1er colonnes affiche les informations selon la carte sélectionner.
     document.documentElement.scrollTop = 0;
@@ -120,14 +118,16 @@ function afficherInfoPokemonChoisi (pokemon, imagesrc) {
     document.getElementById("tailleAfficher").textContent = `Taille: ${pokemon.taille} m`;
     document.getElementById("poidsAfficher").textContent = `Poids: ${pokemon.poids} kg`;
 
-    // TODO: Semble ajouter un id de trop à chaque clique.
-    document.getElementById("btnSuppression").onclick = () => {modalSuppression(pokemon.id)};
+    document.getElementById("btnSuppression").onclick = () => {modalSuppression(pokemon)};
 }
 
-function modalSuppression(IDpokemonInspecter) {
+function modalSuppression(pokemonInspecter) {
      // Efface le pokemon hors des pokemons de l'API quand confirmer.
     const modal = document.getElementById("modal");
+    const messageSupression = document.getElementById("messageSupression")
+    messageSupression.textContent = `Voulez vous vraiment supprimer: ${pokemonInspecter.nom}?`
     modal.classList.add("show");
+    
 
     document.getElementById("btnAnnuler").onclick =()=> {
         modal.classList.remove("show");}
@@ -135,10 +135,10 @@ function modalSuppression(IDpokemonInspecter) {
     document.getElementById("btnConfirmer").onclick =()=> {
         modal.classList.remove("show");
         document.getElementById("carteAfficher").style.display = "none";
-        fetch(`https://6af2194542c6561ced390228.mockapi.io/Pokemon/${IDpokemonInspecter}`,
+        fetch(`https://6af2194542c6561ced390228.mockapi.io/Pokemon/${pokemonInspecter.id}`,
             { method: "DELETE"});
         // '.filter' sert à analyser un array avec une fonction. Dance ce cas, elever 'IDpokemonInspecter'.
-        tousLesPokemons = tousLesPokemons.filter(pokemon => pokemon.id != IDpokemonInspecter);
+        tousLesPokemons = tousLesPokemons.filter(pokemon => pokemon.id != pokemonInspecter.id);
         afficherPokemons(tousLesPokemons);
     }
 }

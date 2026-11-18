@@ -98,8 +98,8 @@
     background-color: #363636;
 }
 .card:hover {
-    border-top: 2px solid orange;
-    border-bottom: 2px solid orange;
+    border-top: 5px solid #ffc107;
+    border-bottom: 5px solid #ffc107;
 }
 img {
     background-color: #303030;
@@ -130,6 +130,8 @@ a, a:visited, a:hover, a:active {
     height: 100%;
     top: 0;
     left: 0;
+    background-color: rgba(54, 54, 54, 0.9);
+    z-index: 1001;  /*Se met par dessus navigation.*/
 }
 .affichageModal.show {
     display: flex;
@@ -137,9 +139,7 @@ a, a:visited, a:hover, a:active {
 .boiteModal {
     display: block;
     margin: auto auto;
-    padding: 5%;
     max-width: 30%;
     background-color: #363636;
-    border: 10px solid #dc3545;
-    border-radius: 0px 0px 0px 30px;
+    border-radius: 0px 20px 0px 30px;
 }
