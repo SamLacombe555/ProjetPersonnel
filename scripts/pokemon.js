@@ -23,18 +23,20 @@ export class Pokemon {
     constructor(id,
             nom,
             types,
+            faiblesses,
+            resistances,
             hp,
             attaque,
             defence,
             vitesse,
             taille,
             poids,
-            description,
-            faiblesses,
-            resistances){
+            description){
         this.#id = id
         this.#nom = nom
         this.#types = types
+        this.#faiblesses = faiblesses
+        this.#resistances = resistances
         this.#hp = hp
         this.#attaque = attaque
         this.#defence = defence
@@ -42,8 +44,6 @@ export class Pokemon {
         this.#taille = taille
         this.#poids = poids
         this.#description = description
-        this.#faiblesses = faiblesses
-        this.#resistances = resistances
     }
 
     // Déclarration des getters et setters.
@@ -55,7 +55,7 @@ export class Pokemon {
 
     get nom() {return this.#nom}
     set nom(nom) {
-        if (nom != "string") {throw TypeError("Le nom doit être de type string.")}
+        if (nom !== "string") {throw TypeError("Le nom doit être de type string.")}
         this.#nom = nom }
 
     get types() {return this.#types}
@@ -66,16 +66,16 @@ export class Pokemon {
                 throw new TypeError("Types contient un type invalide")}} 
         this.#types = types }
 
-    get faiblesse() {return this.#faiblesses}
-    set faiblesse(faiblesses) {
+    get faiblesses() {return this.#faiblesses}
+    set faiblesses(faiblesses) {
         if (!Array.isArray(faiblesses)) {throw new TypeError("Faiblesses doit être un array.")}
         for (const faiblesse of faiblesses) {
             if (!typeValide.includes(faiblesse)) {
                 throw new TypeError("Faiblesses contient un type invalide")}} 
         this.#faiblesses = faiblesses }
 
-    get resistance() {return this.#resistances}
-    set resistance(resistances) {
+    get resistances() {return this.#resistances}
+    set resistances(resistances) {
         if (!Array.isArray(resistances)) {throw new TypeError("Résistances doit être un array.")}
         for (const resistance of resistances) {
             if (!typeValide.includes(resistance)) {
@@ -124,7 +124,7 @@ export class Pokemon {
         nom         : this.#nom,
         types       : this.#types,
         faiblesses  : this.#faiblesses,
-        resistances  : this.#resistances,
+        resistances : this.#resistances,
         hp          : this.#hp,
         attaque     : this.#attaque,
         defence     : this.#defence,

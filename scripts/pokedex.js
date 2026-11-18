@@ -117,10 +117,13 @@ function afficherInfoPokemonChoisi (pokemon, imagesrc) {
     document.getElementById("descriptionAfficher").textContent = pokemon.description;
     const listeTypes = document.getElementById("typesAfficher");
     const listeFaiblesse = document.getElementById("faiblessesAfficher");
+    const listeResistance = document.getElementById("resistancesAfficher");
     listeTypes.replaceChildren();
     listeFaiblesse.replaceChildren();
+    listeResistance.replaceChildren();
     for (const type of pokemon.types) {listeTypes.append(creerBadgesType(type)); }
     for (const faiblesse of pokemon.faiblesses) {listeFaiblesse.append(creerBadgesType(faiblesse)); }
+    for (const resistance of pokemon.resistances) {listeResistance.append(creerBadgesType(resistance)); }
     document.getElementById("tailleAfficher").textContent = `Taille: ${pokemon.taille} m`;
     document.getElementById("poidsAfficher").textContent = `Poids: ${pokemon.poids} kg`;
 

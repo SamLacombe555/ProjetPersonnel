@@ -27,7 +27,7 @@ export class Type {
     set nom(nom){this.#nom = nom;}
 
     get #id(){return this.#id}
-    set #id(ID){this.id = id}
+    set #id(id){this.id = id}
 
     get faiblesses(){return this.#faiblesses}
     set faiblesses(faiblesses){this.#faiblesses = faiblesses}

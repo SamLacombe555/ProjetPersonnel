@@ -199,7 +199,36 @@ async function creationPokemon(event) {
     for (let i=1; i<=compteType; i++) {
         const typeChoisi = document.querySelector(`#selectType${i}`).value;
         type.push(typeChoisi); }
-    // const faiblesses = combinerTypes();
+
+    let type1 = null;
+    let type2 = null;
+
+    // Trouver les types choisis dans tousLesTypes
+    for (const t of tousLesTypes) {
+        if (t.nom === type[0]) {
+            type1 = t;
+        }
+        if (type.length === 2 && t.nom === type[1]) {
+            type2 = t;
+        }
+
+    }
+
+    // Vérifier si les types existent
+    if (type1 === null || (type.length === 2 && type2 === null)) {
+        throw new Error("Type introuvable");
+    }
+
+    // Calculer faiblesses et resistances
+    let resultat = type1;
+
+    if (type2 !== null) {
+        resultat = combinerTypes(type1, type2);
+    }
+
+    const faiblesses = resultat.faiblesses;
+    const resistances = resultat.resistances;
+
     // Convertie toutes les entrées chiffre en 'number'.
     const pointVie  = Number(document.getElementById("pointVie").value);
     const attaque   = Number(document.getElementById("attaque").value);
