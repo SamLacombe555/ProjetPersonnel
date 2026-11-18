@@ -47,36 +47,4 @@ export class Type {
             immune: this.#immune,
         }
     }
-
-
-    //const concatArr = firstArr.concat(secondArr)
-    // const result = concatArr.filter((item, idx) => concatArr.indexOf(item) === idx)
-    // ref: https://gist.github.com/frivolta/4c94fe32b174a8f915f7324f826ee4c8#file-secondsolution-js
-    // merge les deux types ensembles
-// for type3.faiblesse as t3f:
-    // for type3.resistance as t3r:
-        // if t3r == t3f:
-            // t3r.remove(valeur)
-            // t3f.remove(valeur)
-    // for type3.immune as t3i:
-        // for t3r:
-            // if t3r == t3i:
-                // t3r.remove(valeur)
-        // for t3f:
-            // if t3f == t3i:
-                // t3f.remove(valeur)
-
-// for type3.immune as t3i:
-    // for type3.faiblesse as t3f:
-        // if type3.
-// for type1.faiblesse as t1f:
-    // if t1f == t2r:
-        // t3f.remove(t1f)
-// for type1.resistance as t1r:
-    // if t1r == t2r:
-        // t3r.remove(t1r)
-// for type1.immune as t1i:
-    // if t1i == t3r
-        // t3r.remove(t1i)
-
 }
