@@ -1,25 +1,27 @@
 
+// Les types valides qui seront utilisés pour 'pokemon.types' et 'pokemon.faiblesses'.
+const typeValide = ["Normal","Feu","Eau","Electrik","Plante","Glace",
+            "Combat","Poison","Sol","Vol","Psy","Insecte","Roche","Spectre",
+            "Dragon","Tenebres","Acier","Fee"];
+
 export class Pokemon {
-    // Liste de tous les Pokemons créés.
-    static listePokemons= [];
     // Déclaration de variables.
     #id = 1
-    #nom = "nomTemporaire"
-    #type = ["typeTemporaire"]
-    #faiblesse = ["faiblesseTemporaire"]
+    #nom = ""
+    #types = []
+    #faiblesses = []
     #hp = 100
     #attaque = 10
     #defence = 15
     #vitesse = 10
     #taille = 5
     #poids = 35
-    #description = "descriptionTemporaire"
+    #description = ""
 
     // Déclaration du constructeur.
     constructor(id,
             nom,
             types,
-            faiblesses,
             hp,
             attaque,
             defence,
@@ -29,8 +31,7 @@ export class Pokemon {
             description){
         this.#id = id
         this.#nom = nom
-        this.#type = types
-        this.#faiblesse = faiblesses
+        this.#types = types
         this.#hp = hp
         this.#attaque = attaque
         this.#defence = defence
@@ -38,8 +39,6 @@ export class Pokemon {
         this.#taille = taille
         this.#poids = poids
         this.#description = description
-        // Ajoute automatique le Pokemon à la liste.
-        Pokemon.listePokemons.push(this);
     }
 
     // Déclarration des getters et setters.
@@ -49,77 +48,67 @@ export class Pokemon {
 
     get nom() {return this.#nom}
     set nom(nom) {
-        if (nom != string) {throw TypeError("Le nom doit être de type string.")}
+        if (nom != "string") {throw TypeError("Le nom doit être de type string.")}
         this.#nom = nom }
 
-    get type() {return this.#type}
-    set type(type) {
-        const typeValide = ["Normal","Feu","Eau","Electrik","Plante","Glace",
-            "Combat","Poison","Sol","Vol","Psy","Insecte","Roche","Spectre",
-            "Dragon","Tenebres","Acier","Fee"]
-        for (typeRegarder of type) {
-            if (!(typeValide.includes(type))) {
-            throw TypeError("Le type doit être de type valide, donc soit:",
-                "Normal, Feu, Eau, Electrik, Plante, Glace, Combat, Poison,",
-                "Sol, Vol, Psy, Insecte, Roche, Spectre, Dragon, Tenebres,",
-                "Acier, Fee.") }
-            this.#type = type } }
+    get types() {return this.#types}
+    set types(types) {
+        if (!Array.isArray(types)) {throw new TypeError("Types doit être un array.")}
+        for (const type of types) {
+            if (!typeValide.includes(type)) {
+                throw new TypeError("Types contient un type invalide")}} 
+        this.#types = types }
 
-    get faiblesse() {return this.#faiblesse}
-    set faiblesse(faiblesse) {
-        const typeValide = ["Normal","Feu","Eau","Electrik","Plante","Glace",
-            "Combat","Poison","Sol","Vol","Psy","Insecte","Roche","Spectre",
-            "Dragon","Tenebres","Acier","Fee"]
-        for (typeRegarder of type) {
-            if (!(typeValide.includes(type))) {
-            throw TypeError("La faiblesse doit être de type valide, donc soit:",
-                "Normal, Feu, Eau, Electrik, Plante, Glace, Combat, Poison,",
-                "Sol, Vol, Psy, Insecte, Roche, Spectre, Dragon, Tenebres,",
-                "Acier, Fee.") }
-            this.#faiblesse = faiblesse } }
+    get faiblesse() {return this.#faiblesses}
+    set faiblesse(faiblesses) {
+        if (!Array.isArray(faiblesses)) {throw new TypeError("Faiblesses doit être un array.")}
+        for (const faiblesse of faiblesses) {
+            if (!typeValide.includes(faiblesse)) {
+                throw new TypeError("Faiblesses contient un type invalide")}} 
+        this.#faiblesses = faiblesses }
 
     get hp() {return this.#hp}
     set hp(hp) {
-        if (hp != int) {throw TypeError("L'hp doit être de type int.")}
+        if (!Number.isInteger(hp)) {throw TypeError("Hp doit être de type number.")}
         this.#hp = hp }
 
     get attaque() {return this.#attaque}
     set attaque(attaque) {
-        if (attaque != int) {throw TypeError("L'attaque doit être de type int.")}
+        if (!Number.isInteger(attaque)) {throw TypeError("Attaque doit être de type number.")}
         this.#attaque = attaque }
 
     get defence() {return this.#defence}
     set defence(defence) {
-        if (defence != int) {throw TypeError("La défence doit être de type int.")}
+        if (!Number.isInteger(defence)) {throw TypeError("Défence doit être de type number.")}
         this.#defence = defence }
 
     get vitesse() {return this.#vitesse}
     set vitesse(vitesse) {
-        if (vitesse != int) {throw TypeError("La vitesse doit être de type int.")}
+        if (!Number.isInteger(vitesse)) {throw TypeError("Vitesse doit être de type number.")}
         this.#vitesse = vitesse }
 
     get taille() {return this.#taille}
     set taille(taille) {
-        if (taille != float) {throw TypeError("La taille doit être de type float.")}
+        if (!Number.isInteger(taille)) {throw TypeError("Taille doit être de type number.")}
         this.#taille = taille }
     
     get poids() {return this.#poids}
     set poids(poids) {
-        if (poids != float) {throw TypeError("Le poids doit être de type int.")}
+        if (!Number.isInteger(poids)) {throw TypeError("Poids doit être de type number.")}
         this.#poids = poids }
-
+    
     get description() {return this.#description}
     set description(description) {
-        if (description != string) {throw TypeError("La description doit être de type string.")}
+        if (description != "string") {throw TypeError("La description doit être de type string.")}
         this.#description = description }
     
-    // Déclarration des getters et setters.
+    // Déclarration du toJSON pour le mettre au 'sessionStorage'. Maintenant, API.
     toJSON() {
         return {
         id          : this.#id,
         nom         : this.#nom,
-        type        : this.#type,
-        faiblesse   : this.#faiblesse,
+        types       : this.#types,
+        faiblesses  : this.#faiblesses,
         hp          : this.#hp,
         attaque     : this.#attaque,
         defence     : this.#defence,

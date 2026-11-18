@@ -134,12 +134,14 @@ async function creationPokemon(event) {
     for (let i=1; i<=compteType; i++) {
         const typeChoisi = document.querySelector(`#selectType${i}`).value;
         type.push(typeChoisi); }
-    const pointVie = document.getElementById("pointVie").value;
-    const attaque = document.getElementById("attaque").value;
-    const defence = document.getElementById("defence").value;
-    const vitesse = document.getElementById("vitesse").value;
-    const taille = document.getElementById("taille").value;
-    const poids = document.getElementById("poids").value;
+    // Convertie toutes les entrées chiffre en 'number'.
+    const pointVie = Number(document.getElementById("pointVie").value);
+    const attaque = Number(document.getElementById("attaque").value);
+    const defence = Number(document.getElementById("defence").value);
+    const vitesse = Number(document.getElementById("vitesse").value);
+    const taille = Number(document.getElementById("taille").value);
+    const poids = Number(document.getElementById("poids").value);
+
     const description = document.getElementById("description").value;
     const pokemon = new Pokemon(compteurPokemonId, nom, type, pointVie, attaque, defence,
         vitesse, taille, poids, description);

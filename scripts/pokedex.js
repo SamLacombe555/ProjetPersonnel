@@ -89,7 +89,7 @@ function afficherPokemons(liste) {
 // À chaque intéraction dans 'formulaireRecherche', ajoute l'EventListener.
 formulaireRecherche.addEventListener("input", () => {
     afficherPokemons(rechercherPokemon(champRecherche.value, tousLesPokemons)) });
-formulaireRecherche.addEventListener("submit", (e) => e.preventDefault());
+formulaireRecherche.addEventListener("submit", (event) => event.preventDefault());
 chargerPokemonAPI();
 
 
@@ -121,29 +121,24 @@ function afficherInfoPokemonChoisi (pokemon, imagesrc) {
     document.getElementById("poidsAfficher").textContent = `Poids: ${pokemon.poids} kg`;
 
     // TODO: Semble ajouter un id de trop à chaque clique.
-    const btnSuppresion = document.querySelector("#btnSuppression");
-    btnSuppresion.addEventListener("click", () => {modalSuppression(pokemon.id)});
+    document.getElementById("btnSuppression").onclick = () => {modalSuppression(pokemon.id)};
 }
 
 function modalSuppression(IDpokemonInspecter) {
-     // TODO: Efface le pokemon hors des pokemons de l'API quand confirmer.
+     // Efface le pokemon hors des pokemons de l'API quand confirmer.
     const modal = document.getElementById("modal");
-    const btnAnnuler = document.getElementById("btnAnnuler");
-    const btnConfirmer = document.getElementById("btnConfirmer");
-
     modal.classList.add("show");
-    btnAnnuler.addEventListener("click", annulerSuppression);
-    btnConfirmer.addEventListener("click", confirmerSuppression);
 
-    function annulerSuppression () {modal.classList.remove("show");}
-    function confirmerSuppression () {
+    document.getElementById("btnAnnuler").onclick =()=> {
+        modal.classList.remove("show");}
+
+    document.getElementById("btnConfirmer").onclick =()=> {
         modal.classList.remove("show");
         document.getElementById("carteAfficher").style.display = "none";
-        for (const pokemon of tousLesPokemons) {
-            if (IDpokemonInspecter == pokemon.id) {
-                // Retounr trop ID.
-                console.log(IDpokemonInspecter);
-            }     
-        }
+        fetch(`https://6af2194542c6561ced390228.mockapi.io/Pokemon/${IDpokemonInspecter}`,
+            { method: "DELETE"});
+        // '.filter' sert à analyser un array avec une fonction. Dance ce cas, elever 'IDpokemonInspecter'.
+        tousLesPokemons = tousLesPokemons.filter(pokemon => pokemon.id != IDpokemonInspecter);
+        afficherPokemons(tousLesPokemons);
     }
 }
