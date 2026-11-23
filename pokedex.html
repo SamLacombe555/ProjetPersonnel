@@ -1,4 +1,5 @@
 
+<!-- Fichier fait par Vann Sovannthanant et Samuel Lacombe. -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,6 +15,29 @@
     <!-- Empêche une erreur. Ça se passe parce qu'on a pas d'icon. -->
     <link rel="icon" href="data:,">
 </head>
+
+<!-- Hébergement de domaine
+    - Cliquer sur Semaine13: Quarantaine
+    - Cliquer sur le lien
+    - Voir email et libérer le message
+    - Cliquer sur le lien dans le nouveau message Outlook
+
+    - Entrez le nom et le mot de passe
+    - Cliquer sur 'Gestionnaire de fichiers' dans 'Système et fichiers'
+    - Aller dans (ton nom de domaine) -> public_html
+    - Zip le fichier du projet et le mettre dans 'public_html'
+    - Déziper et enlever le fichier.zip puis cliquer dans le projet déziper
+    - Copier le lien au dessus après '/domains/' et coller sur un browser
+-->
+
+<!--
+    Choses à faire:
+    - Manipulation de date.
+    - Faire une maquette Mockup.
+    - Affichage d'un graphique par personne de ChartJS.
+    - Travailler sur le READ.ME.
+    - Lien du projet pour chaque membre.
+-->
 
 <body>
     <header class="over-top-bar">
@@ -38,6 +62,7 @@
                         <!-- N'affiche rien, mais empêche une erreur de WAVE. -->
                         <h2 id="nomAfficher">NomPokemon</h2> 
                         <img id="imageAfficher" alt="imagePokemonInspecter" class="mb-3" style="width: 100%;">
+                        <p id="dateAjoutee"></p>
                         <p id="pointVieAfficher"></p>
                         <p id="attaqueAfficher"></p>
                         <p id="defenceAfficher"></p>

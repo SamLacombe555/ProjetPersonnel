@@ -1,4 +1,6 @@
 
+// Fichier fait par Vann Sovannthanant.
+
 // +=====+ Section de Chargement des Pokemons. +=====+
 let tousLesPokemons = [];
 let tousLesTypes = [];
@@ -8,7 +10,7 @@ const formulaireRecherche = document.getElementById("formulaireRecherche");
 const champRecherche = document.getElementById("recherche");
 const couleursTypes = {
     // Hésite pas à changer des couleurs.
-    // Les couleurs respectent la règke de constrainte.
+    // Les couleurs respectent la visibilité.
     normal: "#78774E",
     feu:    "#BB580F",
     eau:    "#326DEB",
@@ -31,6 +33,7 @@ const couleursTypes = {
 
 async function chargerPokemonAPI() {
     // Va chercher les données de mockapi et les met dans 'tousLesPokemons'.
+    // On a utilisé de l'IA pour insérer les 30 premiers Pokemons dans L'API.
     const reponse = await fetch("https://6af2194542c6561ced390228.mockapi.io/Pokemon")
     if (!reponse.ok) {throw new Error(`Erreur: ${reponse.status}`); } 
     tousLesPokemons = await reponse.json();
@@ -90,7 +93,7 @@ function afficherPokemons(liste) {
     for (const pokemon of liste) {champPokemon.append(creerCarte(pokemon)); }
 }
 
-// À chaque intéraction dans 'formulaireRecherche', ajoute l'EventListener.
+// À chaque intéraction dans 'formulaireRecherche', lance 'EventListener'.
 formulaireRecherche.addEventListener("input", () => {
     afficherPokemons(rechercherPokemon(champRecherche.value, tousLesPokemons)) });
 formulaireRecherche.addEventListener("submit", (event) => event.preventDefault());
@@ -108,6 +111,7 @@ function afficherInfoPokemonChoisi (pokemon, imagesrc) {
     document.getElementById("idAfficher").textContent = `ID: ${pokemon.id}`;
     document.getElementById("imageAfficher").src = imagesrc;
     document.getElementById("imageAfficher").alt = `Image agrandi de ${pokemon.nom}`;
+    document.getElementById("dateAjoutee").textContent = `Ajouté le: ${pokemon.dateAjoutee}`;
     document.getElementById("pointVieAfficher").textContent = `Point de vie: ${pokemon.hp}`;
     document.getElementById("attaqueAfficher").textContent = `Point d'attaque: ${pokemon.attaque}`;
     document.getElementById("defenceAfficher").textContent = `Point de défense: ${pokemon.defence}`
@@ -152,4 +156,8 @@ function modalSuppression(pokemonInspecter) {
         tousLesPokemons = tousLesPokemons.filter(pokemon => pokemon.id != pokemonInspecter.id);
         afficherPokemons(tousLesPokemons);
     }
+}
+
+function affichageTemps() {
+
 }

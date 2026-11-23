@@ -1,11 +1,13 @@
 
+// Classe crée par Vann Sovannthanant.
+
 // Les types valides qui seront utilisés pour 'pokemon.types' et 'pokemon.faiblesses'.
 const typeValide = ["Normal","Feu","Eau","Electrik","Plante","Glace",
             "Combat","Poison","Sol","Vol","Psy","Insecte","Roche","Spectre",
             "Dragon","Tenebres","Acier","Fee"];
 
 export class Pokemon {
-    // Déclaration de variables.
+    // Déclaration des propriétés.
     #id = 1
     #nom = ""
     #types = []
@@ -18,6 +20,7 @@ export class Pokemon {
     #taille = 5
     #poids = 35
     #description = ""
+    #dateAjoutee = ""
 
     // Déclaration du constructeur.
     constructor(id,
@@ -31,7 +34,8 @@ export class Pokemon {
             vitesse,
             taille,
             poids,
-            description){
+            description,
+            dateAjoutee){
         this.#id = id
         this.#nom = nom
         this.#types = types
@@ -44,6 +48,7 @@ export class Pokemon {
         this.#taille = taille
         this.#poids = poids
         this.#description = description
+        this.#dateAjoutee = dateAjoutee
     }
 
     // Déclarration des getters et setters.
@@ -116,6 +121,11 @@ export class Pokemon {
     set description(description) {
         if (description != "string") {throw TypeError("La description doit être de type string.")}
         this.#description = description }
+
+    get dateAjoutee() {return this.#dateAjoutee}
+    set dateAjoutee(dateAjoutee) {
+        if (!dateAjoutee instanceof Datetime) {throw TypeError("La dateAjoutee doit être de type Datetime.")}
+        this.#description = description }
     
     // Déclarration du toJSON pour le mettre au 'sessionStorage'. Maintenant, API.
     toJSON() {
@@ -131,7 +141,8 @@ export class Pokemon {
         vitesse     : this.#vitesse,
         taille      : this.#taille,
         poids       : this.#poids,
-        description : this.#description
+        description : this.#description,
+        dateAjoutee : this.#dateAjoutee
         }
     }
 }

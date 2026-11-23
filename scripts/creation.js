@@ -1,6 +1,8 @@
 
 import { Pokemon } from "./pokemon.js";
 
+// Fichier fait par Vann Sovannthanant et Samuel Lacombe.
+
 // +=====+ Section pour préparer les listes déroulantes. +=====+
 let compteType = 1;
 const formulaire = document.getElementById("formulairePokemon");
@@ -238,8 +240,9 @@ async function creationPokemon(event) {
     const poids     = Number(document.getElementById("poids").value);
 
     const description = document.getElementById("description").value;
+    const dateAjoutee = new Date().today() + " à "+ new Date().timeNow();
     const pokemon = new Pokemon(compteurPokemonId, nom, type, faiblesses, resistances, pointVie, attaque, defence,
-        vitesse, taille, poids, description);
+        vitesse, taille, poids, description, dateAjoutee);
     
     // Envoye le pokemon crée dans l'API.
     const reponse = await fetch("https://6af2194542c6561ced390228.mockapi.io/Pokemon", {
@@ -251,12 +254,27 @@ async function creationPokemon(event) {
     // const Verification = await reponse.json();
     // console.log(Verification)
 
-    document.getElementById("carteSucces").style.display = "flex";
-    document.getElementById("messageSucces").textContent = `${pokemon.nom}, a été crée avec succès et son id est ${pokemon.id}.`
-    // Cette partie sera remplacer pour l'API.
+    // Cette partie est remplacée par l'API.
     // sessionStorage.setItem("CompteurPokemon", compteurPokemonId);
     // sessionStorage.setItem(`Pokemon${compteurPokemonId}`, JSON.stringify(pokemon));
+
+    document.getElementById("carteSucces").style.display = "flex";
+    document.getElementById("messageSucces").textContent = `${pokemon.nom}, a été crée avec succès et son id est ${pokemon.id}.`
 }
 
 formulaire.addEventListener("submit", creationPokemon)
 compterPokemonIdAPI();
+
+
+// +=====+ Section pour la manipulation du temps. +=====+
+// Source - https://stackoverflow.com/a/10211214
+// Posted by Mark Walters, modified by community. See post 'Timeline' for change history
+// Retrieved 2026-11-23, License - CC BY-SA 4.0
+
+// For todays date;
+Date.prototype.today = function () { 
+    return ((this.getDate() < 10)?"0":"") +this.getDate() +"/"+(((this.getMonth()+1) < 10)?"0":"") + (this.getMonth()+1) +"/"+ this.getFullYear(); }
+// For the time now
+Date.prototype.timeNow = function () {
+     return ((this.getHours() < 10)?"0":"") + this.getHours() +":"+ ((this.getMinutes() < 10)?"0":"") + this.getMinutes() +":"+ ((this.getSeconds() < 10)?"0":"") + this.getSeconds();
+}

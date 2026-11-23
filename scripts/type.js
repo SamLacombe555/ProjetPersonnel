@@ -1,15 +1,18 @@
+
+// Classe crée par Samuel Lacombe.
+
 export class Type {
 
     // Liste de tous les types.
     static listeTypes = [];
 
-    // Déclaration de variable
+    // Déclaration des propriétés.
     #nom
     #faiblesses = []
     #resistances = []
     #immune = []
 
-    // Déclaration du constructeur
+    // Déclaration du constructeur.
     constructor(nom, faiblesses = [], resistances = [], immune = [], id) {
         this.#nom = nom;
         this.#faiblesses = faiblesses;
