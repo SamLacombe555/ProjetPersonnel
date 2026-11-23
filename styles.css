@@ -106,6 +106,10 @@
     border-top: 5px solid #ffc107;
     border-bottom: 5px solid #ffc107;
 }
+canvas {
+    background-color: #303030;
+    border-radius: 10px 10px 20px 10px;
+}
 img {
     background-color: #303030;
 }

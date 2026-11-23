@@ -4,6 +4,7 @@
 // +=====+ Section de Chargement des Pokemons. +=====+
 let tousLesPokemons = [];
 let tousLesTypes = [];
+let diagrammeRadar = null
 const champPokemon = document.getElementById("ChampPokemon");
 const quantitePokemon = document.getElementById("quantitePokemon");
 const formulaireRecherche = document.getElementById("formulaireRecherche");
@@ -130,6 +131,7 @@ function afficherInfoPokemonChoisi (pokemon, imagesrc) {
     for (const resistance of pokemon.resistances) {listeResistance.append(creerBadgesType(resistance)); }
     document.getElementById("tailleAfficher").textContent = `Taille: ${pokemon.taille} m`;
     document.getElementById("poidsAfficher").textContent = `Poids: ${pokemon.poids} kg`;
+    chargerDiagrammeRadar(pokemon);
 
     // '.onclick' est un '.addEventListener', la différence c'est que utilisant '.onclick' à la place de l'autre.
     // Ça empêche de '.addEventListener' à chaque fois qu'on 'afficherInfoPokemonChoisi'.
@@ -158,6 +160,42 @@ function modalSuppression(pokemonInspecter) {
     }
 }
 
-function affichageTemps() {
-
+function chargerDiagrammeRadar(pokemon) {
+    // Sert à modifier le diagramme radar avec les propriétés du 'pokemon'.
+    // Pour construire le diagramme, j'ai regarder ces trois liens:
+    // https://www.chartjs.org/docs/latest/charts/radar.html (L'idée de prendre un radar)
+    // https://www.geeksforgeeks.org/javascript/chart-js-radar-chart/ (Comment le faire, je comprenais pas trop la doc)
+    // https://www.geeksforgeeks.org/javascript/how-to-clear-chart-from-canvas-and-disable-hover-events/ (Le '.destroy()')
+    if (diagrammeRadar) {diagrammeRadar.destroy(); }    //
+    const ctx = document.getElementById("diagrammeRadar").getContext('2d')
+    diagrammeRadar = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels : ['Point de Vie','Point Attaque','Point Défense','Point Agilité'],
+            datasets: [{
+                label: 'Statistique du Pokemon',
+                data: [pokemon.hp, pokemon.attaque, pokemon.defence, pokemon.vitesse],
+                borderColor: '#28a745',
+                backgroundColor: '#5FD068',
+            }]
+        },
+        // Pour modifier les couleurs du diagramme lui-même, j'ai utilisé de l'IA. je comprenais pas trop la doc.
+        options: {
+            scales: {
+                r: {
+                    grid:        {color: 'white' }, // Les lignes de la toile.
+                    angleLines:  {color: 'white' }, // Les lignes allant au centre.
+                    pointLabels: {color: 'white', font: {size: 14 } },
+                    ticks: {
+                    color: 'black',                 // Les nombres sur la toile.
+                    backdropColor: 'white'          // La couleur des boites.
+                    }
+                }
+            },
+            plugins: {
+                legend: {labels: {color: 'white'} } // La couleur des labels.
+            }
+        }
+    })
 }
+

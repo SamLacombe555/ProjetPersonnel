@@ -14,6 +14,9 @@
     <script src="./scripts/pokedex.js" type="module"></script>
     <!-- Empêche une erreur. Ça se passe parce qu'on a pas d'icon. -->
     <link rel="icon" href="data:,">
+    <!-- Importation de scripts pour ChartJS. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.umd.js"></script>
 </head>
 
 <!-- Hébergement de domaine
@@ -32,7 +35,7 @@
 
 <!--
     Choses à faire:
-    - Manipulation de date.
+    - Manipulation de date. (DONE)
     - Faire une maquette Mockup.
     - Affichage d'un graphique par personne de ChartJS.
     - Travailler sur le READ.ME.
@@ -63,34 +66,38 @@
                         <h2 id="nomAfficher">NomPokemon</h2> 
                         <img id="imageAfficher" alt="imagePokemonInspecter" class="mb-3" style="width: 100%;">
                         <p id="dateAjoutee"></p>
+
+                        <p id="descriptionAfficher"></p>
                         <p id="pointVieAfficher"></p>
                         <p id="attaqueAfficher"></p>
                         <p id="defenceAfficher"></p>
                         <p id="vitesseAfficher"></p>
+                        <p id="tailleAfficher"></p>
+                        <p id="poidsAfficher"></p>
                         <button id="btnSuppression" type="button" class="btn btn-danger">Suprimer le pokemon</button>
                     </div>
                     <div>
                         <!-- N'affiche rien, mais empêche une erreur de WAVE. -->
                         <h2 id="idAfficher" class="text-end">ID</h2>
-                        <p id="descriptionAfficher"></p>
+                        <canvas id="diagrammeRadar" class="border-5 border-top border-end border-success mb-3 p-2" style="width: 100%">
+                            <!-- Le diagramm radar apparaitra ici. -->
+                        </canvas>
 
-                        <div class="containerTypes border-5 border-top border-end border-warning mb-2 p-2">
+                        <div class="containerTypes border-5 border-top border-end border-warning mb-3 p-2">
                             <p>Types:</p>
                             <div id="typesAfficher"></div>
                         </div>
 
-                        <div class="containerFaiblesses border-5 border-top border-end border-danger mb-2 p-2">
+                        <div class="containerFaiblesses border-5 border-top border-end border-danger mb-3 p-2">
                             <p>Faiblesses:</p>
                             <div id="faiblessesAfficher"></div>
                         </div>
 
-                        <div class="containerResistances border-5 border-top border-end border-primary mb-2 p-2">
+                        <div class="containerResistances border-5 border-top border-end border-primary mb-3 p-2">
                             <p>Résistances:</p>
                             <div id="resistancesAfficher"></div>
                         </div>
 
-                        <p id="tailleAfficher"></p>
-                        <p id="poidsAfficher"></p>
                     </div>
                 </div>
             </div>
