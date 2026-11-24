@@ -4,7 +4,8 @@
 // +=====+ Section de Chargement des Pokemons. +=====+
 let tousLesPokemons = [];
 let tousLesTypes = [];
-let diagrammeRadar = null
+let diagrammeTypes = null;
+let diagrammeRadar = null;
 const champPokemon = document.getElementById("ChampPokemon");
 const quantitePokemon = document.getElementById("quantitePokemon");
 const formulaireRecherche = document.getElementById("formulaireRecherche");
@@ -39,6 +40,7 @@ async function chargerPokemonAPI() {
     if (!reponse.ok) {throw new Error(`Erreur: ${reponse.status}`); } 
     tousLesPokemons = await reponse.json();
     afficherPokemons(tousLesPokemons);
+    chargerDiagrammeTypes(tousLesPokemons);
     quantitePokemon.textContent = `Ici se trouve tous les pokémons du Pokedex, il y'a ${tousLesPokemons.length} Pokemons:`;
 }
 
@@ -157,6 +159,7 @@ function modalSuppression(pokemonInspecter) {
         // '.filter' sert à analyser un array avec une fonction. Dance ce cas, enlever 'IDpokemonInspecter'.
         tousLesPokemons = tousLesPokemons.filter(pokemon => pokemon.id != pokemonInspecter.id);
         afficherPokemons(tousLesPokemons);
+        chargerDiagrammeTypes(tousLesPokemons);
     }
 }
 
@@ -198,5 +201,66 @@ function chargerDiagrammeRadar(pokemon) {
             }
         }
     })
+}
+
+function chargerDiagrammeTypes(liste) {
+    // Compter le nombre de Pokémons de chaque type.
+    const types = Object.keys(couleursTypes);
+    const quantites = [];
+
+    for (const type of types) {
+        let compteur = 0;
+
+        for (const pokemon of liste) {
+            if (pokemon.types.some(t => t.toLowerCase() === type)) {
+                compteur++;
+            }
+        }
+
+        quantites.push(compteur);
+    }
+
+    // Supprimer l'ancien diagramme.
+    if (diagrammeTypes) {
+        diagrammeTypes.destroy();
+    }
+
+    const ctx = document.getElementById("diagrammeTypes");
+
+    diagrammeTypes = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: types,
+            datasets: [{
+                label: "Nombre de Pokémons",
+                data: quantites,
+                backgroundColor: Object.values(couleursTypes)
+            }]
+        },
+        options: {
+            indexAxis: "y",
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: "white",
+                        stepSize: 1
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: "white"
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
 }
 
