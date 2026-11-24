@@ -161,6 +161,7 @@ function modalSuppression(pokemonInspecter) {
 }
 
 function chargerDiagrammeRadar(pokemon) {
+    // Le diagramme ChartJS de Vann Sovannthanant.
     // Sert à modifier le diagramme radar avec les propriétés du 'pokemon'.
     // Pour construire le diagramme, j'ai regarder ces trois liens:
     // https://www.chartjs.org/docs/latest/charts/radar.html (L'idée de prendre un radar)
@@ -179,7 +180,7 @@ function chargerDiagrammeRadar(pokemon) {
                 backgroundColor: '#5FD068',
             }]
         },
-        // Pour modifier les couleurs du diagramme lui-même, j'ai utilisé de l'IA. je comprenais pas trop la doc.
+        // Pour modifier les couleurs du diagramme lui-même, j'ai utilisé de Claude. je comprenais pas trop la doc.
         options: {
             scales: {
                 r: {
